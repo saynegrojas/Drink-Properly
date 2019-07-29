@@ -17,9 +17,11 @@
   },
   "homepage": "https://github.com/saynegrojas/Drink-Properly#readme",
   "dependencies": {
+    "any-promise": "^1.3.0",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "mysql2": "^1.6.5",
+    "retry-as-promised": "^3.2.0",
     "sequelize": "^5.11.0"
   }
 }

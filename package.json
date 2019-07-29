@@ -1,0 +1,24 @@
+{
+  "name": "drink_properly",
+  "version": "1.0.0",
+  "description": "Finding happy hours",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saynegrojas/Drink-Properly.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saynegrojas/Drink-Properly/issues"
+  },
+  "homepage": "https://github.com/saynegrojas/Drink-Properly#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.11.0"
+  }
+}

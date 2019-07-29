@@ -9,18 +9,18 @@
   },
   "test": {
     "username": "root",
-    "password": null,
+    "port": 3306,
+    "password": "Greg@rojas00",
     "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": null,
+    "port": 3306,
+    "password": "Greg@rojas00",
     "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "dialect": "mysql"
   }
 }

@@ -4,7 +4,7 @@
   "description": "Finding happy hours",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/saynegrojas/Drink-Properly#readme",
   "dependencies": {
+    "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "mysql2": "^1.6.5",
     "sequelize": "^5.11.0"

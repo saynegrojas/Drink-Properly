@@ -15,6 +15,7 @@ class Location {
 //          Add Location
 //--------------------------------
 
+//Display Location Class
 class UI {
     static displayLocation() {
         //local storage for now
@@ -58,6 +59,20 @@ class UI {
         //append rows to the list
         list.appendChild(row);
     }
+    static deleteLocation(element){
+        if(element.classList.contains('delete')){
+
+            //targets the parentelement of class (delete) which is <td>
+            //We need to remove the whole row, so another parentElement which is <tr>
+            element.parentElement.parentElement.remove();
+        }
+    }
+    
+    //clearFields function clears the input fields
+    static clearFields(){
+        document.querySelector('#place').value = '';
+        document.querySelector('#zip-code').value = '';
+    }
 }
 
 //--------------------------------
@@ -71,6 +86,7 @@ class UI {
 //          Add location
 //          Remove location
 //--------------------------------
+
 //EVENT: display Location
 document.addEventListener("DOMContentLoaded", UI.displayLocation);
 
@@ -87,6 +103,17 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     const location = new Location(place, zip);
     console.log(location);
 
+    //Add Location to UI
     //Call addLocationToList and pass in (location) contains class Location which is attached to UI
     UI.addLocationToList(location);
+
+    //call clearFields, clears input fields when submit is clicked
+    UI.clearFields();
+});
+
+//EVENT: Remove a location
+document.querySelector('#search-list').addEventListener('click', e => {
+    //click to target an element
+    console.log(e.target);
+    UI.deleteLocation(e.target);
 });

@@ -26,22 +26,25 @@
                 <label for="zip-code">Zip Code</label>
                 <input type="number" id="zip-code" class="form-control">
             </div>
+            <!--submit button-->
+            <input type="submit" value="Find happy hour" class="btn btn-primary btn-block">
         </form>
-        <input type="submit" value="Find happy hour" class="btn btn-primary btn-block">
 
         <!--================-->
         <!--MAP GOES HERE???-->
         <!--================-->
 
-        <table class="table table-striped mt-5">
+        <table class="table table-striped">
             <thead>
-                <tr>
-                    <th>
-                        <h6 class="text-center">Nearby Happy Hour Places</h6>
-                    </th>
+                <tr> 
+                    <h6 class="text-center mt-5">Nearby Happy Hour Places</h6>
+                    <th>Place</th>
+                    <th>Zip Code</th>
+                    <!--where the delete button will go-->
+                    <th></th>
                 </tr>
             </thead>
-            <!--where all of the places will display-->
+            <!--Where search results will display-->
             <tbody id="search-list"></tbody>
         </table>
     </div>

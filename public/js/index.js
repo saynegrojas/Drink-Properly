@@ -72,8 +72,23 @@ class UI {
     static clearFields(){
         document.querySelector('#place').value = '';
         document.querySelector('#zip-code').value = '';
-    }
-}
+    };
+
+    //Show validation message 
+    static validateMessage(message, className){
+        const div = document.createElement('div');
+        div.className = `alert alert-${className}`;
+        div.appendChild(document.createTextNode(message));
+        const container = document.querySelector('.container');
+        const form = document.querySelector('#search-form');
+        container.insertBefore(div, form);
+
+        //Set timeout so it does not stay on the screen
+        //set for 3s
+        setTimeout(() => document.querySelector('.alert').remove(), 
+        3000);
+    };
+};
 
 //--------------------------------
 //      Store class: 
@@ -99,6 +114,11 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     const place = document.querySelector('#place').value;
     const zip = document.querySelector('#zip-code').value;
 
+    //Validate input fields
+    if(place === '' || zip === '') {
+        UI.validateMessage('Please fill in all fields', 'danger');
+    } else {
+
     //Once we get a value, need to instanciate value from Search class
     const location = new Location(place, zip);
     console.log(location);
@@ -109,9 +129,11 @@ document.querySelector('#search-form').addEventListener('submit', e => {
 
     //call clearFields, clears input fields when submit is clicked
     UI.clearFields();
+    }
 });
 
 //EVENT: Remove a location
+//target search-list 
 document.querySelector('#search-list').addEventListener('click', e => {
     //click to target an element
     console.log(e.target);

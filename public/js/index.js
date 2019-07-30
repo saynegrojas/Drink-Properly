@@ -53,7 +53,7 @@ class UI {
         row.innerHTML = `
         <td>${location.place}</td>
         <td>${location.zipCode}</td>
-        <td><a href="#" class="btn btn-danger btn-xs delete">x</a></td>
+        <td><a href="#" class="btn btn-outline-danger btn-xs-2 delete">x</a></td>
         `;
 
         //append rows to the list

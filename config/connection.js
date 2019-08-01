@@ -1,4 +1,6 @@
-// //Dependencies
+// //CONNECTION.JS INITIATES CONNECTION TO MYSQL
+
+// // //Dependencies
 // const Sequelize = require('sequelize');
 
 // //Create mysql connection using sequelize

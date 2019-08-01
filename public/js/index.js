@@ -14,13 +14,12 @@ class Location {
 //          Display Location
 //          Add Location
 //--------------------------------
-
-//Display Location Class
 class UI {
+
+    //DISPLAY LOCATION 
     static displayLocation() {
         //local storage for now
         //***** Will set to database later *****/
-
         //Array of places with zip code
         const StoredLocation = [
             {
@@ -39,6 +38,7 @@ class UI {
         locations.forEach(location => UI.addLocationToList(location));
     }
 
+    //ADD LOCATION
     //call addLocationToList function and pass in all the ojbects from StoredLocation
     static addLocationToList(location) {
 
@@ -59,6 +59,8 @@ class UI {
         //append rows to the list
         list.appendChild(row);
     }
+
+    //DELETE LOCATION
     static deleteLocation(element){
         if(element.classList.contains('delete')){
 
@@ -68,13 +70,14 @@ class UI {
         }
     }
     
+    //CLEAR FIELDS
     //clearFields function clears the input fields
     static clearFields(){
         document.querySelector('#place').value = '';
         document.querySelector('#zip-code').value = '';
     };
 
-    //Show validation message 
+    //SHOW VALIDATION MESSAGE
     static validateMessage(message, className){
         const div = document.createElement('div');
         div.className = `alert alert-${className}`;
@@ -82,18 +85,35 @@ class UI {
         const container = document.querySelector('.container');
         const form = document.querySelector('#search-form');
         container.insertBefore(div, form);
-
         //Set timeout so it does not stay on the screen
         //set for 3s
         setTimeout(() => document.querySelector('.alert').remove(), 
         3000);
     };
 };
+//---------------------------END OF UI CLASSS----------------------------------
+
+
+//SHOW MAP
+function initMap() {
+    //Default setup
+    var latlng = new google.maps.LatLng(33.9746973, -117.33756599351244);
+    var myOptions = {
+        zoom: 8,
+        center: latlng,
+        mapTypeId: 'roadmap'
+    }
+    map = new google.maps.Map(document.getElementById("googleMap"), myOptions);
+    console.log(map);
+}
+
 
 //--------------------------------
 //      Store class: 
 //          handles storage
 //--------------------------------
+
+
 
 //--------------------------------
 //      Events: 
@@ -102,10 +122,10 @@ class UI {
 //          Remove location
 //--------------------------------
 
-//EVENT: display Location
-document.addEventListener("DOMContentLoaded", UI.displayLocation);
+//EVENT: DISPLAY LOCATION 
+document.addEventListener("DOMContentLoaded", UI.displayLocation, initMap);
 
-//EVENT: Add location
+//EVENT: ADD LOCATION
 document.querySelector('#search-form').addEventListener('submit', e => {
     //prevent actual submit
     e.preventDefault();
@@ -122,17 +142,17 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     //Once we get a value, need to instanciate value from Search class
     const location = new Location(place, zip);
     console.log(location);
-
-    //Add Location to UI
+    
     //Call addLocationToList and pass in (location) contains class Location which is attached to UI
     UI.addLocationToList(location);
-
+    
     //call clearFields, clears input fields when submit is clicked
     UI.clearFields();
     }
+
 });
 
-//EVENT: Remove a location
+//EVENT: REMOVE LOCATION
 //target search-list 
 document.querySelector('#search-list').addEventListener('click', e => {
     //click to target an element

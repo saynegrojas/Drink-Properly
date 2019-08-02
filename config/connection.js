@@ -3,7 +3,7 @@
 // // //Dependencies
 // const Sequelize = require('sequelize');
 
-// //Create mysql connection using sequelize
+//Create mysql connection using sequelize
 // const sequelize = new Sequelize('drink_properly_db', 'root', 'Greg@rojas00',{
 //     host: 'localhost',
 //     dialect: 'mysql',

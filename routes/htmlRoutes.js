@@ -1,4 +1,4 @@
-const path = require('path');
+const htmlRoute = require('');
 
 module.exports = function(app){
 

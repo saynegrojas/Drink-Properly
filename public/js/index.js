@@ -94,18 +94,49 @@ class UI {
 //---------------------------END OF UI CLASSS----------------------------------
 
 
+
 //SHOW MAP
+var map;
+var service;
+var infoWindow;
+
 function initMap() {
-    //Default setup
-    var latlng = new google.maps.LatLng(33.9746973, -117.33756599351244);
-    var myOptions = {
+    //Initialize variables
+
+    var myLocation = new google.maps.LatLng(33.9746973, -117.33756599351244);
+
+    var map = {
         zoom: 8,
-        center: latlng,
-        mapTypeId: 'roadmap'
+        center: myLocation,
+        mapTypeId: 'roadmap',
     }
-    map = new google.maps.Map(document.getElementById("googleMap"), myOptions);
-    console.log(map);
-}
+    map = new google.maps.Map(document.getElementById("googleMap"), map);
+    //console.log(map);
+
+    //Current Location Marker
+    var marker = new google.maps.Marker({
+        position: myLocation,
+        map: map,
+        title: 'Hi!'
+    });
+
+    $.ajax({
+        url: "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54",
+        type: "GET",
+        success: function(data){
+            $.each(data["results"][0]["address_components"],
+            function(key, value){
+                if(value["types"][0] == "postal_code"){
+                    console.log(value["long_name"]);
+                } 
+            });
+        }
+    });
+    
+} 
+
+
+
 
 
 //--------------------------------
@@ -135,13 +166,15 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     const zip = document.querySelector('#zip-code').value;
 
     //Validate input fields
-    if(place === '' || zip === '') {
+    //place: place === ''
+    if(zip === '') {
         UI.validateMessage('Please fill in all fields', 'danger');
     } else {
 
     //Once we get a value, need to instanciate value from Search class
     const location = new Location(place, zip);
-    console.log(location);
+    //OUR ZIPCODE WE WILL MATCH WITH GOOGLE'S ZIP CODE
+    //console.log(location.zipCode);
     
     //Call addLocationToList and pass in (location) contains class Location which is attached to UI
     UI.addLocationToList(location);
@@ -149,7 +182,6 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     //call clearFields, clears input fields when submit is clicked
     UI.clearFields();
     }
-
 });
 
 //EVENT: REMOVE LOCATION

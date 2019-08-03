@@ -1,4 +1,4 @@
-const htmlRoute = require('');
+const htmlRoute = require('../models');
 
 module.exports = function(app){
 

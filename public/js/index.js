@@ -121,9 +121,13 @@ function initMap() {
     });
 
     $.ajax({
-        url: "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54",
+        url: `https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54`,
         type: "GET",
         success: function(data){
+            console.log(data);
+            console.log(data["results"][0]["address_components"][5]["long_name"]);
+            
+            
             $.each(data["results"][0]["address_components"],
             function(key, value){
                 if(value["types"][0] == "postal_code"){
@@ -174,7 +178,7 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     //Once we get a value, need to instanciate value from Search class
     const location = new Location(place, zip);
     //OUR ZIPCODE WE WILL MATCH WITH GOOGLE'S ZIP CODE
-    //console.log(location.zipCode);
+    console.log(location.zipCode);
     
     //Call addLocationToList and pass in (location) contains class Location which is attached to UI
     UI.addLocationToList(location);

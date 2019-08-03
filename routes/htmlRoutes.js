@@ -1,6 +1,6 @@
 const htmlRoute = require('../models');
 
-module.exports = function(app){
+module.exports = function(app) {
 
     //HTML index route
     app.get('/', (req, res) => {

@@ -45,6 +45,12 @@ module.exports = function(sequelize, DataTypes) {
           },
           hour_stop: {
             type: Sequelize.TIME
+          },
+          day_start: {
+            type: Sequelize.STRING
+          },
+          day_end: {
+            type: Sequelize.STRING
           }
         }, {
           timestamps: false

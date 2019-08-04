@@ -92,7 +92,11 @@ class UI {
 //---------------------------END OF UI CLASSS----------------------------------
 
 
-//SHOW MAP
+//--------------------------------
+//      Show Map:             
+//          initMap
+//          markers
+//--------------------------------
 var map;
 var service;
 var infoWindow;
@@ -198,6 +202,7 @@ function initMap() {
     });
 }
 
+//---------------------------END SHOW MAP--------------------------------------
 
 //--------------------------------
 //      Store class: 
@@ -268,3 +273,5 @@ document.querySelector('#search-list').addEventListener('click', e => {
     console.log(e.target);
     UI.deleteLocation(e.target);
 });
+
+//---------------------------END EVENTS----------------------------------------

@@ -13,12 +13,16 @@
 </head>
 
 <body>
+    <!--Heading-->
     <div class="container mt-4">
         <h1 class="display-4">
             <span class="text-primary">Drink</span>
             <i class="fas fa-beer">roperly</i>
         </h1>
+
         <!--Validation div Goes here-->
+
+        <!--Search Input-->
         <form id="search-form">
             <div class="form-group">
                 <label for="place">Place</label>
@@ -26,12 +30,17 @@
             </div>
             <div class="form-group">
                 <label for="zip-code">Zip Code</label>
-                <input type="number" id="zip-code" class="form-control" oninput="this.value=this.value.slice(0,this.maxLength)" maxlength="5" placeholder="Enter Zip Code">
+                <input type="number" id="zip-code" class="form-control" oninput="this.value=this.value.slice(0,this.maxLength)" maxlength="5"
+                    placeholder="Enter Zip Code">
             </div>
             <!--submit button-->
             <input type="submit" value="Find happy hour" class="btn btn-primary btn-block mb-5">
         </form>
+
+        <!--Google Maps Layout-->
         <div id="googleMap" style="width:100%;height:300px;"></div>
+
+        <!--Table of nearby restaurants-->
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -45,9 +54,15 @@
             <!--Where search results will display-->
             <tbody id="search-list"></tbody>
         </table>
+        
+        <!--Menu populated with data-->
+        <div class="menu">
+            <div class="card">
+                <p id="menu-body"></p>
+            </div>
+        </div>
     </div>
-    <!--https://maps.googleapis.com/maps/api/js?key=AIzaSyC5HKLqN1MC49K-vtpVxamkZOfSO6-Ocfs-->
-
+   
     <!--Jquery-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!--JavaScript-->

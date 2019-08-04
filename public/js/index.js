@@ -92,7 +92,6 @@ class UI {
 //---------------------------END OF UI CLASSS----------------------------------
 
 
-
 //SHOW MAP
 var map;
 var service;
@@ -197,11 +196,7 @@ function initMap() {
         map: map,
         title: 'Hi!'
     });
-
 }
-
-
-
 
 
 //--------------------------------
@@ -230,24 +225,7 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     const place = document.querySelector('#place').value;
     const zip = document.querySelector('#zip-code').value;
 
-    //Validate input fields
-    //place: place === ''
-    if (zip === '') {
-        UI.validateMessage('Please fill in all fields', 'danger');
-    } else {
-
-    //Once we get a value, need to instanciate value from Search class
-    const location = new Location(place, zip);
-    //OUR ZIPCODE WE WILL MATCH WITH GOOGLE'S ZIP CODE
-    console.log(location.zipCode);
-    
-    //Call addLocationToList and pass in (location) contains class Location which is attached to UI
-    UI.addLocationToList(location);
-    
-    //call clearFields, clears input fields when submit is clicked
-    UI.clearFields();
-    }
-
+    //Make ajax call
     $.ajax({
         url: `https://maps.googleapis.com/maps/api/geocode/json?address=${zip}&key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54`,
         type: "GET",
@@ -263,6 +241,24 @@ document.querySelector('#search-form').addEventListener('submit', e => {
                 });
         }
     });
+
+    //Validate input fields
+    //place: place === ''
+    if (zip === '') {
+        UI.validateMessage('Please fill in all fields', 'danger');
+    } else {
+
+        //Once we get a value, need to instanciate value from Search class
+        const location = new Location(place, zip);
+        //OUR ZIPCODE WE WILL MATCH WITH GOOGLE'S ZIP CODE
+        //console.log(location.zipCode);
+
+        //Call addLocationToList and pass in (location) contains class Location which is attached to UI
+        UI.addLocationToList(location);
+
+        //call clearFields, clears input fields when submit is clicked
+        UI.clearFields();
+    }
 });
 
 //EVENT: REMOVE LOCATION

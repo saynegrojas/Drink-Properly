@@ -3,20 +3,65 @@
 //Sequelize package
 const Sequelize = require('sequelize');
 
-//reference connection to database
-const sequelize = require('../config/connection.js');
-
-
 module.exports = function(sequelize, DataTypes) {
     var HappyHour = sequelize.define("HappyHour", {
-      text: DataTypes.STRING,
-      description: DataTypes.TEXT,
-      zip: DataTypes.INTEGER,
-      drink_name: DataTypes.STRING,
-      drink_price: DataTypes.INTEGER
-    });
+      id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+          },
+          place_name: {
+              type: Sequelize.STRING,
+          },
+          zip_code: {
+            type: Sequelize.INTEGER
+          },
+          drink1_name: {
+            type: Sequelize.STRING
+          },
+          drink1_price: {
+            type: Sequelize.INTEGER
+          },
+          drink2_name: {
+            type: Sequelize.STRING
+          },
+          drink2_price: {
+            type: Sequelize.INTEGER
+          },
+          appetizer1_name: {
+            type: Sequelize.STRING
+          },
+          appetizer1_price: {
+            type: Sequelize.INTEGER
+          },
+          appetizer2_name: {
+            type: Sequelize.STRING
+          },
+          appetizer2_price: {
+            type: Sequelize.INTEGER
+          },
+          hour_start: {
+            type: Sequelize.TIME
+          },
+          hour_stop: {
+            type: Sequelize.TIME
+          }
+        }, {
+          timestamps: false
+        });
+
     return HappyHour;
   };
+
+  /*id INT (11) NOT NULL AUTO_INCREMENT,
+ZIPCODE CHAR(6),
+restaurant VARCHAR(100) NOT NULL,
+drink VARCHAR(100),
+food VARCHAR(100),
+price Decimal(10,2),
+hour time(6),
+PRIMARY KEY (id)
+); */
 
   //sequel joins
   //Maybe use associate 

@@ -3,18 +3,76 @@
 //Sequelize package
 const Sequelize = require('sequelize');
 
-//reference connection to database
-const sequelize = require('../config/connection.js');
-
-
 module.exports = function(sequelize, DataTypes) {
     var HappyHour = sequelize.define("HappyHour", {
-      text: DataTypes.STRING,
-      description: DataTypes.TEXT,
-      zip: DataTypes.INTEGER,
-      drink_name: DataTypes.STRING,
-      drink_price: DataTypes.INTEGER
-    });
+      id: {
+            type: Sequelize.INTEGER(11),
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true
+          },
+          place_name: {
+              type: Sequelize.STRING,
+              allowNull: false,
+              require: true
+          },
+          zip_code: {
+            type: Sequelize.INTEGER(11),
+            allowNull: false,
+            required: true
+          },
+          drink1_name: {
+            type: Sequelize.STRING,
+            allowNull: false
+          },
+          drink1_price: {
+            type: Sequelize.DECIMAL(10,2),
+            allowNull: false
+          },
+          drink2_name: {
+            type: Sequelize.STRING,
+            allowNull: false
+          },
+          drink2_price: {
+            type: Sequelize.DECIMAL(10,2),
+            allowNull: false
+          },
+          appetizer1_name: {
+            type: Sequelize.STRING,
+            allowNull: false
+          },
+          appetizer1_price: {
+            type: Sequelize.DECIMAL(10,2),
+            allowNull: false
+          },
+          appetizer2_name: {
+            type: Sequelize.STRING,
+            allowNull: false
+          },
+          appetizer2_price: {
+            type: Sequelize.DECIMAL(10,2),
+            allowNull: false
+          },
+          hour_start: {
+            type: Sequelize.TIME,
+            allowNull: false
+          },
+          hour_stop: {
+            type: Sequelize.TIME,
+            allowNull: false
+          },
+          day_start: {
+            type: Sequelize.STRING,
+            allowNull: false
+          },
+          day_end: {
+            type: Sequelize.STRING,
+            allowNull: false
+          }
+        }, {
+          timestamps: false
+        });
+
     return HappyHour;
   };
 
@@ -22,7 +80,7 @@ module.exports = function(sequelize, DataTypes) {
   //Maybe use associate 
 
   // //CREATE A LOCATION MODEL
-  // var Location = sequelize.define('happyHour', {
+  // module.exports = sequelize.define('HappyHour', {
   //   id: {
   //     type: Sequelize.INTEGER,
   //     autoIncrement: true,

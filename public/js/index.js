@@ -1,150 +1,128 @@
 //--------------------------------
-//      Location Class:       
-//          Represents search input
-//--------------------------------
-class Location {
-    constructor(place, zipCode) {
-        //sets object (this) to what it is passed in
-        this.place = place;
-        this.zipCode = zipCode;
-    }
-}
-//--------------------------------
 //      UI Class:             
-//          Display Location
-//          Add Location
+//          Display menu
+//          Add location to list
+//          Select location
+//          Clear fields
+//          Validation
 //--------------------------------
+
+//const row = document.querySelector('tr');
 class UI {
 
-    //DISPLAY LOCATION 
-    static displayLocation() {
-        //local storage for now
-        //***** Will set to database later *****/
-        //Array of places with zip code
-        const StoredLocation = [
-            {
-                place: "Applebees",
-                zipCode: "92563"
-            }, {
-                place: "Chili's",
-                zipCode: "92455"
-            }
-        ];
+    //Display Menu
+    static displayMenu(dayS, dayE) {
+        //Set params as variables
+        let
+            dayStart = dayS,
+            dayEnd = dayE;
 
-        //instance of StoredLocation
-        const locations = StoredLocation;
+        const menu = document.querySelector(".menu");
+        const card_body = document.createElement('card-body');
 
-        //loop through StoredLocation array
-        locations.forEach(location => UI.addLocationToList(location));
+        card_body.innerHTML = `
+        <p>${dayStart}</p>
+        <p>${dayEnd}</p>
+        `
+        menu.appendChild(card_body);
+        //hours
+        //drinks
+        //appetizers
     }
 
-    //ADD LOCATION
-    //call addLocationToList function and pass in all the ojbects from StoredLocation
-    static addLocationToList(location) {
+    //Add Location and pass in place, zip 
+    static addLocationToList(location, postalCode) {
+
+        let locations = location;
+        let postalCodes = postalCode;
 
         //grab element search-list from the DOM
         const list = document.querySelector('#search-list');
 
-        //create a new row that holds all the constructor object in tr
+        //create a new row that holds all tr
         const row = document.createElement('tr');
 
         //add columns to table
-        //****Might not need delete button ***//
         row.innerHTML = `
-        <td>${location.place}</td>
-        <td>${location.zipCode}</td>
-        <td><a href="#" class="btn btn-outline-danger btn-xs-2 delete">x</a></td>
+        <td>${locations}</td>
+        <td>${postalCodes}</td>
+        <td <a href="#" class="btn btn-outline-success btn-xs-2 select"></a>Select</td>
         `;
-
         //append rows to the list
         list.appendChild(row);
     }
 
-    //DELETE LOCATION
-    static deleteLocation(element){
-        if(element.classList.contains('delete')){
+    //Select Location
+    static selectLocation(element) {
+        if (element.classList.contains('select')) {
 
             //targets the parentelement of class (delete) which is <td>
             //We need to remove the whole row, so another parentElement which is <tr>
-            element.parentElement.parentElement.remove();
+            //element.parentElement.parentElement.remove();
         }
     }
-    
-    //CLEAR FIELDS
-    //clearFields function clears the input fields
-    static clearFields(){
+
+    //Clears the input fields after clicking submit
+    static clearFields() {
         document.querySelector('#place').value = '';
         document.querySelector('#zip-code').value = '';
     };
 
-    //SHOW VALIDATION MESSAGE
-    static validateMessage(message, className){
+    //Show Validation Message when inputs are invalid
+    static validateMessage(message, className) {
         const div = document.createElement('div');
         div.className = `alert alert-${className}`;
         div.appendChild(document.createTextNode(message));
         const container = document.querySelector('.container');
         const form = document.querySelector('#search-form');
         container.insertBefore(div, form);
+
         //Set timeout so it does not stay on the screen
         //set for 3s
-        setTimeout(() => document.querySelector('.alert').remove(), 
-        3000);
+        setTimeout(() => document.querySelector('.alert').remove(),
+            3000);
     };
 };
+
 //---------------------------END OF UI CLASSS----------------------------------
 
-
-
-//SHOW MAP
-var map;
-var service;
-var infoWindow;
-
+//--------------------------------
+//      Show Map:             
+//          initMap
+//          markers
+//--------------------------------
+//initizialize map
 function initMap() {
     //Initialize variables
-
     var myLocation = new google.maps.LatLng(33.9746973, -117.33756599351244);
-
+    //map options
     var map = {
         zoom: 8,
         center: myLocation,
-        mapTypeId: 'roadmap',
+        mapTypeId: 'roadmap'
     }
     map = new google.maps.Map(document.getElementById("googleMap"), map);
-    //console.log(map);
-
-    //Current Location Marker
+}
+//Add marker 
+function addMarker(coords) {
+    var map = {
+        zoom: 8,
+        center: coords,
+        mapTypeId: 'roadmap'
+    }
+    map = new google.maps.Map(document.getElementById("googleMap"), map);
     var marker = new google.maps.Marker({
-        position: myLocation,
-        map: map,
-        title: 'Hi!'
+        position: coords,
+        map: map
     });
+}
 
-    $.ajax({
-        url: "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54",
-        type: "GET",
-        success: function(data){
-            $.each(data["results"][0]["address_components"],
-            function(key, value){
-                if(value["types"][0] == "postal_code"){
-                    console.log(value["long_name"]);
-                } 
-            });
-        }
-    });
-    
-} 
-
-
-
-
+//---------------------------END SHOW MAP--------------------------------------
 
 //--------------------------------
 //      Store class: 
 //          handles storage
 //--------------------------------
-
-
 
 //--------------------------------
 //      Events: 
@@ -153,41 +131,127 @@ function initMap() {
 //          Remove location
 //--------------------------------
 
-//EVENT: DISPLAY LOCATION 
-document.addEventListener("DOMContentLoaded", UI.displayLocation, initMap);
+//EVENT: Initiate Map on Load 
+document.addEventListener("DOMContentLoaded", initMap);
 
-//EVENT: ADD LOCATION
+//EVENT: Add location on submit
 document.querySelector('#search-form').addEventListener('submit', e => {
-    //prevent actual submit
+    //Prevent actual submit
     e.preventDefault();
-
-    //get form values
+    
+    //Get form values
     const place = document.querySelector('#place').value;
     const zip = document.querySelector('#zip-code').value;
 
+    //Call function and pass in zip code input
+    getLatLng(zip);
+    
+// }
     //Validate input fields
-    //place: place === ''
-    if(zip === '') {
-        UI.validateMessage('Please fill in all fields', 'danger');
+    //place: not necessary
+    if (zip === '') {
+        UI.validateMessage('PLEASE ENTER A ZIP CODE', 'danger');
     } else {
-
-    //Once we get a value, need to instanciate value from Search class
-    const location = new Location(place, zip);
-    //OUR ZIPCODE WE WILL MATCH WITH GOOGLE'S ZIP CODE
-    //console.log(location.zipCode);
-    
-    //Call addLocationToList and pass in (location) contains class Location which is attached to UI
-    UI.addLocationToList(location);
-    
-    //call clearFields, clears input fields when submit is clicked
-    UI.clearFields();
+        //Clears input fields when submit is clicked
+        UI.clearFields();
     }
 });
 
-//EVENT: REMOVE LOCATION
-//target search-list 
+//EVENT: Select row location to menu
+//Target search-list 
 document.querySelector('#search-list').addEventListener('click', e => {
-    //click to target an element
+
+    //Click to target an element
     console.log(e.target);
-    UI.deleteLocation(e.target);
+    UI.selectLocation(e.target);
 });
+
+//---------------------------END EVENTS----------------------------------------
+
+
+//--------------------------------
+//      Results from data: 
+//          Init map
+//          Display Menu
+//          Add markers
+//          Add data to table
+//--------------------------------
+
+//Function get lat and lng from zip code input by making an ajax call
+function getLatLng(zip) {
+    //Set parameter to variable 
+    let postal_code = zip;
+    $.ajax({
+        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${postal_code}&key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54`,
+        type: "GET",
+        success: function (data) {
+            //console.log(data);
+
+            //Grab lat and lng to create markers for map
+
+            //Set chosen data to variables 
+            //zip, lat, lng
+            postalCode = (data["results"][0]["address_components"][0]["long_name"]);
+            let lat = (data["results"][0]["geometry"]["location"]["lat"]);
+            let lng = (data["results"][0]["geometry"]["location"]["lng"]);
+
+            //Getting our api 
+            if (postal_code == postalCode) {
+                $.get('/api/all', function (data) {
+                    //grab the whole row from the DOM
+                    const row = document.querySelector('tr');
+                    for (var j = 0; j <= data.length - 1; j++) {
+                        //Go through data to match zip codes with input zip codes
+                        if (data[j]["zip_code"] != postal_code) {
+                            //validatation
+                            UI.validateMessage("COMING SOON....", "info");
+                        } else {
+                            for (var i = 0; i <= data.length - 1; i++) {
+                                //query variable
+                                let results = data[i];
+
+                                //Grab variables and store into variables
+                                let
+                                    //location
+                                    nameOfPlace = results["place_name"],
+                                    zipCodes = results["zip_code"],
+                                    //days
+                                    dayStarts = results["day_start"],
+                                    dayEnds = results["day_end"],
+                                    //hours
+                                    hourStart = results["hour_start"],
+                                    hourEnd = results["hour_stop"],
+                                    //drinks
+                                    drink1Name = results["drink1_name"],
+                                    drink1Price = results["drink1_price"],
+                                    drink2Name = results["drink2_name"],
+                                    drink2Price = results["drink2_price"],
+                                    //appetizers
+                                    appetizer1Name = results["appetizer1_name"],
+                                    appetizer1Price = results["appetizer1_price"],
+                                    appetizer2Name = results["appetizer2_name"],
+                                    appetizer2Price = results["appetizer2_price"],
+                                    //coords
+                                    lats = results["lat"],
+                                    lngs = results["lng"],
+                                    coords = { lat: lats, lng: lngs };
+
+                                //Call functions
+
+                                //This function gets the values from db and adds to the table
+                                UI.addLocationToList(nameOfPlace, zipCodes);
+
+                                //Displays Menu to card
+                                UI.displayMenu(dayStarts, dayEnds);
+
+                                //adds markers for locations 
+                                addMarker(coords);
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    });
+};
+//---------------------------END RESULTS----------------------------------------

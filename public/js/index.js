@@ -3,9 +3,9 @@
 //          Represents search input
 //--------------------------------
 class Location {
-    constructor(place, zipCode) {
+    constructor(zipCode) {
         //sets object (this) to what it is passed in
-        this.place = place;
+        //this.place = place;
         this.zipCode = zipCode;
     }
 }
@@ -91,114 +91,37 @@ class UI {
 };
 //---------------------------END OF UI CLASSS----------------------------------
 
-
 //--------------------------------
 //      Show Map:             
 //          initMap
 //          markers
 //--------------------------------
-var map;
-var service;
-var infoWindow;
 
+//initizialize map
 function initMap() {
     //Initialize variables
-
     var myLocation = new google.maps.LatLng(33.9746973, -117.33756599351244);
-
+    //map options
     var map = {
         zoom: 8,
         center: myLocation,
-        mapTypeId: 'roadmap',
-        styles: [
-            { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
-            { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
-            { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
-            {
-                featureType: 'administrative.locality',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#d59563' }]
-            },
-            {
-                featureType: 'poi',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#d59563' }]
-            },
-            {
-                featureType: 'poi.park',
-                elementType: 'geometry',
-                stylers: [{ color: '#263c3f' }]
-            },
-            {
-                featureType: 'poi.park',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#6b9a76' }]
-            },
-            {
-                featureType: 'road',
-                elementType: 'geometry',
-                stylers: [{ color: '#38414e' }]
-            },
-            {
-                featureType: 'road',
-                elementType: 'geometry.stroke',
-                stylers: [{ color: '#212a37' }]
-            },
-            {
-                featureType: 'road',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#9ca5b3' }]
-            },
-            {
-                featureType: 'road.highway',
-                elementType: 'geometry',
-                stylers: [{ color: '#746855' }]
-            },
-            {
-                featureType: 'road.highway',
-                elementType: 'geometry.stroke',
-                stylers: [{ color: '#1f2835' }]
-            },
-            {
-                featureType: 'road.highway',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#f3d19c' }]
-            },
-            {
-                featureType: 'transit',
-                elementType: 'geometry',
-                stylers: [{ color: '#2f3948' }]
-            },
-            {
-                featureType: 'transit.station',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#d59563' }]
-            },
-            {
-                featureType: 'water',
-                elementType: 'geometry',
-                stylers: [{ color: '#17263c' }]
-            },
-            {
-                featureType: 'water',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#515c6d' }]
-            },
-            {
-                featureType: 'water',
-                elementType: 'labels.text.stroke',
-                stylers: [{ color: '#17263c' }]
-            }
-        ]
+        mapTypeId: 'roadmap'
     }
     map = new google.maps.Map(document.getElementById("googleMap"), map);
-    //console.log(map);
 
-    //Current Location Marker
-    var marker = new google.maps.Marker({
-        position: myLocation,
-        map: map,
-        title: 'Hi!'
+}
+
+//Add marker 
+function addMarker(coords){
+    var map = {
+        zoom: 8,
+        center: coords,
+        mapTypeId: 'roadmap'
+    }
+    map = new google.maps.Map(document.getElementById("googleMap"), map);
+        var marker = new google.maps.Marker({
+        position: coords,
+        map: map
     });
 }
 
@@ -227,26 +150,13 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     e.preventDefault();
 
     //get form values
-    const place = document.querySelector('#place').value;
+    //const place = document.querySelector('#place').value;
     const zip = document.querySelector('#zip-code').value;
 
-    //Make ajax call
-    $.ajax({
-        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${zip}&key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54`,
-        type: "GET",
-        success: function(data){
-            console.log(data);
-            console.log(data["results"][0]["address_components"][0]["long_name"]);
-            
-            $.each(data["results"][0]["address_components"],
-                function(key, value) {
-                    if (value["types"][0] == "postal_code") {
-                        console.log(value["long_name"]);
-                    }
-                });
-        }
-    });
-
+    //getLatLng(zip);
+    getLatLng(zip);
+    
+// }
     //Validate input fields
     //place: place === ''
     if (zip === '') {
@@ -254,9 +164,7 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     } else {
 
         //Once we get a value, need to instanciate value from Search class
-        const location = new Location(place, zip);
-        //OUR ZIPCODE WE WILL MATCH WITH GOOGLE'S ZIP CODE
-        //console.log(location.zipCode);
+        const location = new Location(zip);
 
         //Call addLocationToList and pass in (location) contains class Location which is attached to UI
         UI.addLocationToList(location);
@@ -275,3 +183,71 @@ document.querySelector('#search-list').addEventListener('click', e => {
 });
 
 //---------------------------END EVENTS----------------------------------------
+
+function getLatLng(zip){
+    let postal_code = zip;
+    $.ajax({
+        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${postal_code}&key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54`,
+        type: "GET",
+        success: function (data) {
+            //Grab LAT and LNG to create markers for map
+            //console.log(data);
+            postalCode = (data["results"][0]["address_components"][0]["long_name"]);
+            //console.log(data["results"][0]["geometry"]["location"]["lat"]);
+            let lat = (data["results"][0]["geometry"]["location"]["lat"]);
+            //console.log(data["results"][0]["geometry"]["location"]["lng"]);
+            let lng = (data["results"][0]["geometry"]["location"]["lng"]);
+            //console.log(`lat: ${lat} lng: ${lng}`);
+            // let coords = { lat: lat, lng: lng }
+            //console.log(coords);
+
+
+            //call add marker to pass in lat and lng
+            //addMarker(coords);
+
+
+            //getting our api 
+            if (postal_code == postalCode) {
+                $.get('/api/all', function (data) {
+
+                    console.log(data);
+                    
+                    for (var j = 0; j <= data.length - 1; j++) {
+                        //go through api data if there is no zip code that match the input
+                        if (data[j]["zip_code"] != postal_code) {
+                            console.log("We do not have any around that zip code");
+                        } else {
+                            for (var i = 0; i <= data.length - 1; i++) {
+        
+                                
+                                //place
+                                console.log(`${data[i]["place_name"]}`);
+                                //days
+                                console.log(`Days: ${data[i]["day_start"]} - ${data[i]["day_end"]}`);
+                                //hours
+                                console.log(`Hours: ${data[i]["hour_start"]}pm - ${data[i]["hour_stop"]}pm`);
+                                //drinks
+                                console.log("Drink Specials: ");
+                                console.log(`${data[i]["drink1_name"]} ----- $${data[i]["drink1_price"]}`);
+                                console.log(`${data[i]["drink2_name"]} ----- $${data[i]["drink2_price"]}`);
+                                //appetizers
+                                console.log("Appetizers: ");
+                                console.log(`${data[i]["appetizer1_name"]} ----- $${data[i]["appetizer1_price"]}`);
+                                console.log(`${data[i]["appetizer2_name"]} ----- $${data[i]["appetizer2_price"]}`);
+
+                                let lats = data[i]["lat"] 
+                                let lngs = data[i]["lng"]
+                                console.log(lngs);
+                                
+                                let coords = { lat: lats, lng: lngs }
+                                if(coords){
+                                    addMarker(coords);
+                                }                                
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    });
+};

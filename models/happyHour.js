@@ -11,6 +11,11 @@ module.exports = function(sequelize, DataTypes) {
             autoIncrement: true,
             primaryKey: true
           },
+          type: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            required: true
+          },
           place_name: {
               type: Sequelize.STRING,
               allowNull: false,
@@ -23,51 +28,73 @@ module.exports = function(sequelize, DataTypes) {
           },
           drink1_name: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: true,
+            defaultStatus: "See store for drink specials"
           },
           drink1_price: {
             type: Sequelize.DECIMAL(10,2),
-            allowNull: false
+            allowNull: true,
+            defaultStatus: "See store for drink specials"
           },
           drink2_name: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: true,
+            defaultStatus: "See store for drink specials"
           },
           drink2_price: {
             type: Sequelize.DECIMAL(10,2),
-            allowNull: false
+            allowNull: true,
+            defaultStatus: "See store for drink specials"
           },
           appetizer1_name: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: true,
+            defaultStatus: "See store for appetizer specials"
           },
           appetizer1_price: {
             type: Sequelize.DECIMAL(10,2),
-            allowNull: false
+            allowNull: true,
+            defaultStatus: "See store for appetizer specials"
           },
           appetizer2_name: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: true,
+            defaultStatus: "See store for appetizer specials"
           },
           appetizer2_price: {
             type: Sequelize.DECIMAL(10,2),
-            allowNull: false
+            allowNull: true,
+            defaultStatus: "See store for appetizer specials"
           },
           hour_start: {
             type: Sequelize.TIME,
-            allowNull: false
+            allowNull: true,
+            defaultStatus: "Hours may vary"
           },
           hour_stop: {
             type: Sequelize.TIME,
-            allowNull: false
+            allowNull: true,
+            defaultStatus: "Hours may vary"
           },
           day_start: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: true,
+            defaultStatus: "Days may vary"
           },
           day_end: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: true,
+            defaultStatus: "Days may vary"
+          },
+          lat: {
+            type: Sequelize.FLOAT(10,7),
+            allowNull: false,
+            required: true
+          },          
+          lng: {
+            type: Sequelize.FLOAT(10,7),
+            allowNull: false,
+            required: true
           }
         }, {
           timestamps: false
@@ -75,39 +102,3 @@ module.exports = function(sequelize, DataTypes) {
 
     return HappyHour;
   };
-
-  //sequel joins
-  //Maybe use associate 
-
-  // //CREATE A LOCATION MODEL
-  // module.exports = sequelize.define('HappyHour', {
-  //   id: {
-  //     type: Sequelize.INTEGER,
-  //     autoIncrement: true,
-  //     primaryKey: true
-  //   },
-  //   place_name: {
-  //       type: Sequelize.STRING,
-  //   },
-  //   drink_name: {
-  //     type: Sequelize.STRING
-  //   },
-  //   drink_price: {
-  //     type: Sequelize.INTEGER
-  //   },
-  //   zip: {
-  //     type: Sequelize.INTEGER
-  //   }
-  // }, {
-  //   timestamps: false
-  // });
-
-  // //Sync Location
-  // Location.sync();
-
-
-  // //drinks with name, prices as a long string
-  // //using js, seperate each name, price using split method
-  // //var drinks, drinks.split(,)
-  
-  // module.exports = Location;

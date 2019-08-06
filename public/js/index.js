@@ -227,26 +227,182 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     e.preventDefault();
 
     //get form values
-    const place = document.querySelector('#place').value;
+    //const place = document.querySelector('#place').value;
     const zip = document.querySelector('#zip-code').value;
 
+    // var coords = getLatLng(zip);
+
+    // console.log(coords);
     //Make ajax call
+    
+   //place/textsearch/json?query=restaurant
+   //var coords = getLatLng(zip);
+   //console.log(coords)
+
+    // $.when(getLatLng(zip)).then(function(data){
+    //     //console.log(getRestaurants());
+    //         console.log(data);
+            
+    //         // let lats = lat;
+    //         // let long = lng;
+    //         // getRestaurants(lats, long);
+            
+    //         });
+
+
     $.ajax({
         url: `https://maps.googleapis.com/maps/api/geocode/json?address=${zip}&key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54`,
         type: "GET",
         success: function(data){
+            //Grab LAT and LNG to create markers for map
             console.log(data);
-            console.log(data["results"][0]["address_components"][0]["long_name"]);
+            postalCode = (data["results"][0]["address_components"][0]["long_name"]);
+            //console.log(data["results"][0]["geometry"]["location"]["lat"]);
+            let lat = (data["results"][0]["geometry"]["location"]["lat"]);
+            //console.log(data["results"][0]["geometry"]["location"]["lng"]);
+            let lng = (data["results"][0]["geometry"]["location"]["lng"]);
+            console.log(`lat: ${lat} lng: ${lng}`);
+            let coords = {lat: lat, lng: lng}
+            console.log(coords);
+
+            //getting our api 
+            if(zip == postalCode){
+                $.get('/api/all', function(data){
+                    for(var j = 0; j <= data.length -1; j++){
+                        if(data[j]["zip_code"] != zip){
+                            console.log("We do not have any around that zip code");
+                        } else {
+                            for(var i = 0; i <= data.length -1; i++) {
+                                // if(data){
+        
+                                // }
+        
+                            //place
+                            //console.log(data[i]["place_name"]);
+                            console.log(`${data[i]["place_name"]}`);
+                            //days
+                            console.log(`Days: ${data[i]["day_start"]} - ${data[i]["day_end"]}`);
+                            //console.log(data[i]["day_end"]);
+                            //hours
+                            console.log(`Hours: ${data[i]["hour_start"]}pm - ${data[i]["hour_stop"]}pm`);
+                            //console.log(data[i]["hour_stop"]);
+                            
+                            //drinks
+                            console.log("Drink Specials: ");
+                            
+                            console.log(`${data[i]["drink1_name"]} ----- $${data[i]["drink1_price"]}`);
+                            console.log(`${data[i]["drink2_name"]} ----- $${data[i]["drink2_price"]}`);
+                            // console.log(data[i]["drink1_name"]);
+                            // console.log(data[i]["drink1_price"]);
+                            // console.log(data[i]["drink2_name"]);
+                            // console.log(data[i]["drink2_price"]);
+                            //appetizers
+                            console.log("Appetizers: ");
+                            console.log(`${data[i]["appetizer1_name"]} ----- $${data[i]["appetizer1_price"]}`);
+                            console.log(`${data[i]["appetizer2_name"]} ----- $${data[i]["appetizer2_price"]}`);
+                            
+                            // console.log(data[i]["appetizer1_name"]);
+                            // console.log(data[i]["appetizer1_price"]);
+                            // console.log(data[i]["appetizer2_name"]);
+                            // console.log(data[i]["appetizer2_price"]);
+                            }
+                        }
+                        }
+                    })
+                    
+                    
+
+            }
+            /*
+appetizer1_name: "Loaded Nachos"
+appetizer1_price: "3.00"
+appetizer2_name: "Chicken Fingers"
+appetizer2_price: "3.00"
+day_end: "Friday"
+day_start: "Monday"
+drink1_name: "Bud Light"
+drink1_price: "2.00"
+drink2_name: "Coors Light"
+drink2_price: "2.00"
+hour_start: "03:00:00"
+hour_stop: "05:00:00"
+id: 1
+lat: 33.9394264
+lng: -117.2991714
+place_name: "Buffalo Wild Wings"
+type: "restaurant"
+zip_code: 92553 */
+    //         $.ajax({
+    //             url:  `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=1000&type=restaurant&key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54`,
+    //             type: 'GET',
+    //             success: function(result){
+    //                 console.log(result);
+    //             }
+    //         });
+    //         // let rest = getRestaurants(lat, lng);
+    //         // console.log(rest);
             
-            $.each(data["results"][0]["address_components"],
-                function(key, value) {
-                    if (value["types"][0] == "postal_code") {
-                        console.log(value["long_name"]);
-                    }
-                });
+    // //         // $.each(data["results"][0]["address_components"],
+    // //         //     function(key, value) {
+    // //         //         if (value["types"][0] == "postal_code") {
+    // //         //             console.log(value["long_name"]);
+    // //         //         }
+    // //         //     });
+    //     }
+    // });
+
+    //Gets nearby restaurants from input zipcode 
+
+// function getRestaurants(coords){
+//     let coordinate = coords;
+    
+//     $.ajax({
+//         url:  `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${coordinate}&radius=1000&type=restaurant&key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54`,
+//         type: "GET",
+//         success: function(data){
+//             console.log(data);
+//         }
+//     })
+// }
+
+// $.ajax({
+//     url: `https://maps.googleapis.com/maps/api/geocode/json?address=${zip}&key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54`,
+//     type: "GET",
+//     success: function(data){
+//         //console.log(data["results"][0]["geometry"]["location"]["lat"]);
+//         let lat = (data["results"][0]["geometry"]["location"]["lat"]);
+//         //console.log(data["results"][0]["geometry"]["location"]["lng"]);
+//         let lng = (data["results"][0]["geometry"]["location"]["lng"]);
+//         //console.log(`lat: ${lat} lng: ${lng}`);
+//         latLng = {lat: lat, lng: lng}
+//         //console.log(latLng);
+        
+//         return latLng;
+//         conosle.log(getRestaurant(latLng));
+//     }
+// });
+
+// function getLatLng(zip) {
+//     let postalCode = zip;
+//     console.log(postalCode);
+    
+//     $.ajax({
+//         url: `https://maps.googleapis.com/maps/api/geocode/json?address=${postalCode}&key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54`,
+//         type: "GET",
+//         success: function(data){
+//             //console.log(data["results"][0]["geometry"]["location"]["lat"]);
+//             let lat = (data["results"][0]["geometry"]["location"]["lat"]);
+//             //console.log(data["results"][0]["geometry"]["location"]["lng"]);
+//             let lng = (data["results"][0]["geometry"]["location"]["lng"]);
+//             //console.log(`lat: ${lat} lng: ${lng}`);
+//             latLng = {lat: lat, lng: lng}
+//             console.log(latLng);
+            
         }
     });
 
+
+// }
     //Validate input fields
     //place: place === ''
     if (zip === '') {
@@ -275,3 +431,7 @@ document.querySelector('#search-list').addEventListener('click', e => {
 });
 
 //---------------------------END EVENTS----------------------------------------
+
+
+
+

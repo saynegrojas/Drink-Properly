@@ -11,18 +11,42 @@
 class UI {
 
     //Display Menu
-    static displayMenu(dayS, dayE) {
+    static displayMenu(nameP,dayS, dayE,hourS, hourE, drink1N, drink1P, drink2N, drink2P, appetizer1N, appetizer1P, appetizer2N, appetizer2P) {
         //Set params as variables
         let
+            NamePlace = nameP,
             dayStart = dayS,
-            dayEnd = dayE;
+            dayEnd = dayE,
+            hourStart = hourS,
+            hourEnd = hourE,
+            drink1Name = drink1N, 
+            drink1Price = drink1P,
+            drink2Name = drink2N,
+            drink2Price = drink2P,
+            appetizer1Name = appetizer1N,
+            appetizer1Price = appetizer1P,
+            appetizer2Name = appetizer2N,
+            appetizer2Price = appetizer2P;
+            
 
         const menu = document.querySelector(".menu");
         const card_body = document.createElement('card-body');
-
+        //nameOfPlace,dayStarts, dayEnds, hourStart, hourEnd, drink1Name, drink1Price, drink2Name, 
+        //drink2Price, appetizer1Name, appetizer1Price, appetizer2Name, appetizer2Name
         card_body.innerHTML = `
+        <p>${NamePlace}</p>
         <p>${dayStart}</p>
         <p>${dayEnd}</p>
+        <p>${hourStart}</p>
+        <p>${hourEnd}</p>
+        <p>${drink1Name}</p>
+        <p>${drink1Price}</p>
+        <p>${drink2Name}</p>
+        <p>${drink2Price}</p>
+        <p>${appetizer1Name}</p>
+        <p>${appetizer1Price}</p>
+        <p>${appetizer2Name}</p>
+        <p>${appetizer2Price}</p>
         `
         menu.appendChild(card_body);
         //hours
@@ -147,6 +171,9 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     getLatLng(zip);
     
 // }
+    //var e = document.getElementById("datalist");
+    //var strUser = e.options[e.selectedIndex].text;
+
     //Validate input fields
     //place: not necessary
     if (zip === '') {
@@ -213,24 +240,25 @@ function getLatLng(zip) {
                                 //Grab variables and store into variables
                                 let
                                     //location
-                                    nameOfPlace = results["place_name"],
+                                    typeOfPlace = results["type"];
+                                    nameOfPlaces = results["place_name"],
                                     zipCodes = results["zip_code"],
                                     //days
                                     dayStarts = results["day_start"],
                                     dayEnds = results["day_end"],
                                     //hours
-                                    hourStart = results["hour_start"],
-                                    hourEnd = results["hour_stop"],
+                                    hourStarts = results["hour_start"],
+                                    hourEnds = results["hour_stop"],
                                     //drinks
-                                    drink1Name = results["drink1_name"],
-                                    drink1Price = results["drink1_price"],
-                                    drink2Name = results["drink2_name"],
-                                    drink2Price = results["drink2_price"],
+                                    drink1Names = results["drink1_name"],
+                                    drink1Prices = results["drink1_price"],
+                                    drink2Names = results["drink2_name"],
+                                    drink2Prices = results["drink2_price"],
                                     //appetizers
-                                    appetizer1Name = results["appetizer1_name"],
-                                    appetizer1Price = results["appetizer1_price"],
-                                    appetizer2Name = results["appetizer2_name"],
-                                    appetizer2Price = results["appetizer2_price"],
+                                    appetizer1Names = results["appetizer1_name"],
+                                    appetizer1Prices = results["appetizer1_price"],
+                                    appetizer2Names = results["appetizer2_name"],
+                                    appetizer2Prices = results["appetizer2_price"],
                                     //coords
                                     lats = results["lat"],
                                     lngs = results["lng"],
@@ -239,10 +267,10 @@ function getLatLng(zip) {
                                 //Call functions
 
                                 //This function gets the values from db and adds to the table
-                                UI.addLocationToList(nameOfPlace, zipCodes);
+                                UI.addLocationToList(nameOfPlaces, zipCodes);
 
                                 //Displays Menu to card
-                                UI.displayMenu(dayStarts, dayEnds);
+                                UI.displayMenu(nameOfPlaces,dayStarts, dayEnds, hourStarts, hourEnds, drink1Names, drink1Prices, drink2Names, drink2Prices, appetizer1Names, appetizer1Prices, appetizer2Names, appetizer2Names);
 
                                 //adds markers for locations 
                                 addMarker(coords);

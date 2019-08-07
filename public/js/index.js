@@ -52,7 +52,7 @@ class UI {
         //hours
         //drinks
         //appetizers
-    }
+    };
 
     //Add Location and pass in place, zip 
     static addLocationToList(location, postalCode) {
@@ -106,6 +106,19 @@ class UI {
         setTimeout(() => document.querySelector('.alert').remove(),
             3000);
     };
+};
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+    document.body.style.backgroundColor = "white";
 };
 
 //---------------------------END OF UI CLASSS----------------------------------

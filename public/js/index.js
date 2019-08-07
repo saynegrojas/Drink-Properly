@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", initMap);
 document.querySelector('#search-form').addEventListener('submit', e => {
     //Prevent actual submit
     e.preventDefault();
-
+    $('.transform').toggleClass('transform-active');
     //Get form values
     const place = document.querySelector('#place').value;
     const zip = document.querySelector('#zip-code').value;
@@ -156,6 +156,19 @@ document.querySelector('#search-form').addEventListener('submit', e => {
         UI.clearFields();
     }
 });
+/* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+    document.body.style.backgroundColor = "white";
+}
 
 //EVENT: Select row location to menu
 //Target search-list 

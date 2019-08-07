@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 DROP DATABASE IF EXISTS happy_hour_db;
 
 CREATE DATABASE happy_hour_db;
@@ -26,3 +27,10 @@ lng DECIMAL(11,8),
 PRIMARY KEY (ID)
 );
 SELECT*FROM HAPPYHOURS;
+=======
+DROP DATABASE IF EXISTS drink_properly_db;
+
+CREATE DATABASE drink_properly_db;
+
+USE drink_properly_db;
+>>>>>>> 105569eba6ba4c41f862a4ee56d32a30183590b9

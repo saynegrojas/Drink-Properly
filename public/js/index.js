@@ -11,7 +11,7 @@
 class UI {
 
     //Display Menu
-    static displayMenu(nameP,dayS, dayE,hourS, hourE, drink1N, drink1P, drink2N, drink2P, appetizer1N, appetizer1P, appetizer2N, appetizer2P) {
+    static displayMenu(nameP, dayS, dayE, hourS, hourE, drink1N, drink1P, drink2N, drink2P, appetizer1N, appetizer1P, appetizer2N, appetizer2P) {
         //Set params as variables
         let
             NamePlace = nameP,
@@ -19,7 +19,7 @@ class UI {
             dayEnd = dayE,
             hourStart = hourS,
             hourEnd = hourE,
-            drink1Name = drink1N, 
+            drink1Name = drink1N,
             drink1Price = drink1P,
             drink2Name = drink2N,
             drink2Price = drink2P,
@@ -27,7 +27,7 @@ class UI {
             appetizer1Price = appetizer1P,
             appetizer2Name = appetizer2N,
             appetizer2Price = appetizer2P;
-            
+
 
         const menu = document.querySelector(".menu");
         const card_body = document.createElement('card-body');
@@ -169,16 +169,11 @@ document.querySelector('#search-form').addEventListener('submit', e => {
 
     //Call function and pass in zip code input
     getLatLng(zip);
-<<<<<<< HEAD
 
     // }
-=======
-    
-// }
     //var e = document.getElementById("datalist");
     //var strUser = e.options[e.selectedIndex].text;
 
->>>>>>> 4f704c009b62eee3be375f0f300a1b417ae73465
     //Validate input fields
     //place: not necessary
     if (zip === '') {
@@ -257,14 +252,9 @@ function getLatLng(zip) {
 
                                 //Grab variables and store into variables
                                 let
-<<<<<<< HEAD
                                 //location
-                                    nameOfPlace = results["place_name"],
-=======
-                                    //location
                                     typeOfPlace = results["type"];
-                                    nameOfPlaces = results["place_name"],
->>>>>>> 4f704c009b62eee3be375f0f300a1b417ae73465
+                                nameOfPlaces = results["place_name"],
                                     zipCodes = results["zip_code"],
                                     //days
                                     dayStarts = results["day_start"],
@@ -293,7 +283,7 @@ function getLatLng(zip) {
                                 UI.addLocationToList(nameOfPlaces, zipCodes);
 
                                 //Displays Menu to card
-                                UI.displayMenu(nameOfPlaces,dayStarts, dayEnds, hourStarts, hourEnds, drink1Names, drink1Prices, drink2Names, drink2Prices, appetizer1Names, appetizer1Prices, appetizer2Names, appetizer2Names);
+                                UI.displayMenu(nameOfPlaces, dayStarts, dayEnds, hourStarts, hourEnds, drink1Names, drink1Prices, drink2Names, drink2Prices, appetizer1Names, appetizer1Prices, appetizer2Names, appetizer2Names);
 
                                 //adds markers for locations 
                                 addMarker(coords);

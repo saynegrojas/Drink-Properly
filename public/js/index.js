@@ -138,15 +138,15 @@ document.addEventListener("DOMContentLoaded", initMap);
 document.querySelector('#search-form').addEventListener('submit', e => {
     //Prevent actual submit
     e.preventDefault();
-    
+
     //Get form values
     const place = document.querySelector('#place').value;
     const zip = document.querySelector('#zip-code').value;
 
     //Call function and pass in zip code input
     getLatLng(zip);
-    
-// }
+
+    // }
     //Validate input fields
     //place: not necessary
     if (zip === '') {
@@ -184,7 +184,7 @@ function getLatLng(zip) {
     $.ajax({
         url: `https://maps.googleapis.com/maps/api/geocode/json?address=${postal_code}&key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54`,
         type: "GET",
-        success: function (data) {
+        success: function(data) {
             //console.log(data);
 
             //Grab lat and lng to create markers for map
@@ -197,7 +197,7 @@ function getLatLng(zip) {
 
             //Getting our api 
             if (postal_code == postalCode) {
-                $.get('/api/all', function (data) {
+                $.get('/api/all', function(data) {
                     //grab the whole row from the DOM
                     const row = document.querySelector('tr');
                     for (var j = 0; j <= data.length - 1; j++) {
@@ -212,7 +212,7 @@ function getLatLng(zip) {
 
                                 //Grab variables and store into variables
                                 let
-                                    //location
+                                //location
                                     nameOfPlace = results["place_name"],
                                     zipCodes = results["zip_code"],
                                     //days

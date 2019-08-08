@@ -15,14 +15,12 @@
 
 <body>
     <!--Heading-->
-    <div class="container mt-4">
-        <h1 class="display-4">
+    <div class="jumbotron">
+        <h1 class="display-4 text-center">
             <span class="text-primary">Drink</span>
             <i class="fas fa-beer">roperly</i>
         </h1>
     </div>
-
-        <!--Validation div Goes here-->
     <div class="container">
         <!--Search Input-->
         <form id="search-form">
@@ -49,8 +47,7 @@
                     <h5 class="text-center mt-5 mb-3">Nearby Happy Hour Places</h5>
                     <th>Place</th>
                     <th>Zip Code</th>
-                    <!--where the select button will go-->
-                    <th></th>
+                    <th>Dislikes</th>
                 </tr>
             </thead>
             <!--Where search results will display-->
@@ -58,19 +55,20 @@
             
         </table>
 
-        </div>
         <!--Menu populated with data-->
         <div class="menu">
-            <div id="card"></div>
+            <div id="card">
+
+            </div>
         </div>
-   
-    <!--Jquery-->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <!--JavaScript-->
-    <script src="./js/index.js"></script>
-    <!---->
-    <!--Google API-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54&callback=initMap"></script>
+
+        <!--Jquery-->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <!--JavaScript-->
+        <script src="./js/index.js"></script>
+        <!---->
+        <!--Google API-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54&callback=initMap"></script>
 </body>
 
 </html>

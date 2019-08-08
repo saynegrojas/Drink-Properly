@@ -3,17 +3,6 @@
 //Sequelize package
 const Sequelize = require('sequelize');
 
-<<<<<<< HEAD
-//reference connection to database
-const sequelize = require('../config/connection.js');
-
-//SEQUELIZE MODEL
-
-//Sequelize package
-const Sequelize = require('sequelize');
-
-=======
->>>>>>> 105569eba6ba4c41f862a4ee56d32a30183590b9
 module.exports = function(sequelize, DataTypes) {
     var HappyHour = sequelize.define("HappyHour", {
       id: {

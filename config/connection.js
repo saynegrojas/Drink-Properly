@@ -4,7 +4,7 @@
 const Sequelize = require('sequelize');
 
 //Create mysql connection using sequelize
-const sequelize = new Sequelize('drink_properly_db', 'root', 'Greg@rojas00',{
+const sequelize = new Sequelize('happy_hour_db', 'root', 'Corina08',{
     host: 'localhost',
     dialect: 'mysql2',
     pool: {

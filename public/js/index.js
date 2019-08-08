@@ -6,6 +6,7 @@
 //          Clear fields
 //          Validation
 //--------------------------------
+var towerCoord; 
 
 //const row = document.querySelector('tr');
 class UI {
@@ -93,29 +94,44 @@ class UI {
 //--------------------------------
 //initizialize map
 function initMap() {
-    //Initialize variables
-    var myLocation = new google.maps.LatLng(33.9746973, -117.33756599351244);
-    //map options
-    var map = {
-        zoom: 8,
-        center: myLocation,
-        mapTypeId: 'roadmap'
+    $.get("/api/all").then(function(result){
+        for (let i = 0; i < result.length; i++) {
+            var markerLat= result[i].lat;
+            var markerLong= result[i].lng;
+            var location= {lat: markerLong, lng: markerLat};
+
+            function addMarker() {
+                var map = {
+                    zoom: 8,
+                    center: location ,
+                    mapTypeId: 'roadmap'
+                }
+                map = new google.maps.Map(document.getElementById("googleMap"), map);
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                    //loop through marker(s) 
+                });
+            }
+        
+    //         //Initialize variables
+    // var myLocation = new google.maps.LatLng(markerLat, markerLong);
+    // //map options
+    // var map = {
+    //     zoom: 8,
+    //     center: myLocation,
+    //     mapTypeId: 'roadmap'
+    // }
+    // map = new google.maps.Map(document.getElementById("googleMap"), map);
+
+        }
+    })
     }
-    map = new google.maps.Map(document.getElementById("googleMap"), map);
-}
+    
+    
 //Add marker 
-function addMarker(coords) {
-    var map = {
-        zoom: 8,
-        center: coords,
-        mapTypeId: 'roadmap'
-    }
-    map = new google.maps.Map(document.getElementById("googleMap"), map);
-    var marker = new google.maps.Marker({
-        position: coords,
-        map: map
-    });
-}
+
+
 
 //---------------------------END SHOW MAP--------------------------------------
 
@@ -166,6 +182,12 @@ document.querySelector('#search-list').addEventListener('click', e => {
     UI.selectLocation(e.target);
 });
 
+
+        
+
+
+
+
 //---------------------------END EVENTS----------------------------------------
 
 
@@ -198,6 +220,8 @@ function getLatLng(zip) {
             //Getting our api 
             if (postal_code == postalCode) {
                 $.get('/api/all', function (data) {
+                    console.log(data);
+                    
                     //grab the whole row from the DOM
                     const row = document.querySelector('tr');
                     for (var j = 0; j <= data.length - 1; j++) {
@@ -206,9 +230,9 @@ function getLatLng(zip) {
                             //validatation
                             UI.validateMessage("COMING SOON....", "info");
                         } else {
-                            for (var i = 0; i <= data.length - 1; i++) {
+                            //for (var i = 0; i <= data.length - 1; i++) {
                                 //query variable
-                                let results = data[i];
+                                let results = data[j];
 
                                 //Grab variables and store into variables
                                 let
@@ -245,17 +269,22 @@ function getLatLng(zip) {
                                 UI.displayMenu(dayStarts, dayEnds);
 
                                 //adds markers for locations 
-                                addMarker(coords);
-                            }
+                                addMarker();
+                                      
+         
+                                      
+      
+                                      
+                                        
+  
+                              
+                                }
+                            
                         }
-                    }
+                    
                 });
             }
         }
     });
 };
-<<<<<<< HEAD
 //---------------------------END RESULTS----------------------------------------
-=======
-//---------------------------END RESULTS----------------------------------------
->>>>>>> 105569eba6ba4c41f862a4ee56d32a30183590b9

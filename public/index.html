@@ -35,7 +35,7 @@
                         <input type="number" id="zip-code" class="form-control" oninput="this.value=this.value.slice(0,this.maxLength)" maxlength="5" placeholder="Enter Zip Code">
                     </div>
                     <!--submit button-->
-                    <input type="submit" value="Find happy hour" class="btn btn-primary btn-block mb-5">
+                    <input type="submit" onclick="openNav()" value="Find happy hour" class="btn btn-primary btn-block mb-5">
                 </form>
 
                 <!--Google Maps Layout-->
@@ -57,13 +57,14 @@
                 </table>
             </div>
         </div>
-        <!--Menu populated with data-->
-        <div id="mySidenav" class="sidenav">
-            <div class="menu">
-                <div id="card"></div>
-            </div>
+    </div>
+    <!--Menu populated with data-->
+    <div id="mySidenav" class="sidenav">
+        <div class="menu">
+            <div id="card"></div>
         </div>
-        <span onclick="openNav()"></span>
+    </div>
+    <span onclick="openNav()"></span>
 
     </div>
 

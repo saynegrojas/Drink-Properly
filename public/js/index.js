@@ -25,19 +25,13 @@ class UI {
             appetizer1Name = appetizer1N,
             appetizer1Price = appetizer1P,
             appetizer2Name = appetizer2N,
-            appetizer2Price = appetizer2P; <<
-        << << < HEAD
+            appetizer2Price = appetizer2P;
 
-
-            ===
-            === =
-
-            let newHourStart = hourStart.slice(1, 5);
+        let newHourStart = hourStart.slice(1, 5);
         let newHourEnd = hourEnd.slice(1, 5);
         console.log(newHourStart)
             //grab menu class to append data inside card, card-body
-            >>>
-            >>> > f52e8da04065d8de51fcfb94a54b8cae834423bd
+
         const menu = document.querySelector(".menu");
         const card_body = document.createElement('card-body');
 
@@ -53,19 +47,15 @@ class UI {
             <p class="text-center">APPETIZER SPECIALS</p>
             <p class="text-center">${appetizer1Name}_________$${appetizer1Price}</p>
             <p class="text-center">${appetizer2Name}_________$${appetizer2Price}</p>
-        ` <<
-            << << < HEAD
+            `
         menu.appendChild(card_body);
         //hours
         //drinks
-        //appetizers
-        ===
-        === =
+        //appetize
         // if(card_body.length === 'undefined'){
         //     card_body.length == 'More coming soon'
         // }
-        menu.appendChild(card_body); >>>
-        >>> > f52e8da04065d8de51fcfb94a54b8cae834423bd
+        menu.appendChild(card_body);
     };
 
     //Add Location and pass in place, zip 

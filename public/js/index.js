@@ -7,7 +7,6 @@
 //          Validation
 //--------------------------------
 
-//const row = document.querySelector('tr');
 class UI {
 
     //Display Menu
@@ -26,38 +25,53 @@ class UI {
             appetizer1Name = appetizer1N,
             appetizer1Price = appetizer1P,
             appetizer2Name = appetizer2N,
-            appetizer2Price = appetizer2P;
+            appetizer2Price = appetizer2P; <<
+        << << < HEAD
 
 
+            ===
+            === =
+
+            let newHourStart = hourStart.slice(1, 5);
+        let newHourEnd = hourEnd.slice(1, 5);
+        console.log(newHourStart)
+            //grab menu class to append data inside card, card-body
+            >>>
+            >>> > f52e8da04065d8de51fcfb94a54b8cae834423bd
         const menu = document.querySelector(".menu");
         const card_body = document.createElement('card-body');
-        //nameOfPlace,dayStarts, dayEnds, hourStart, hourEnd, drink1Name, drink1Price, drink2Name, 
-        //drink2Price, appetizer1Name, appetizer1Price, appetizer2Name, appetizer2Name
+
         card_body.innerHTML = `
-        <p>${NamePlace}</p>
-        <p>${dayStart}</p>
-        <p>${dayEnd}</p>
-        <p>${hourStart}</p>
-        <p>${hourEnd}</p>
-        <p>${drink1Name}</p>
-        <p>${drink1Price}</p>
-        <p>${drink2Name}</p>
-        <p>${drink2Price}</p>
-        <p>${appetizer1Name}</p>
-        <p>${appetizer1Price}</p>
-        <p>${appetizer2Name}</p>
-        <p>${appetizer2Price}</p>
-        `
+            <p class="text-center">${NamePlace}</p>
+            <p class="text-center">Weekly</p>
+            <p class="text-center">${dayStart} - ${dayEnd}</p>
+            <p class="text-center">Hours</p>
+            <p class="text-center">${newHourStart}pm - ${newHourEnd}pm</p>
+            <p class="text-center"> DRINK SPECIALS </p>
+            <p class="text-center">${drink1Name}_________$${drink1Price}</p>
+            <p class="text-center">${drink2Name}_________$${drink2Price}</p>
+            <p class="text-center">APPETIZER SPECIALS</p>
+            <p class="text-center">${appetizer1Name}_________$${appetizer1Price}</p>
+            <p class="text-center">${appetizer2Name}_________$${appetizer2Price}</p>
+        ` <<
+            << << < HEAD
         menu.appendChild(card_body);
         //hours
         //drinks
         //appetizers
+        ===
+        === =
+        // if(card_body.length === 'undefined'){
+        //     card_body.length == 'More coming soon'
+        // }
+        menu.appendChild(card_body); >>>
+        >>> > f52e8da04065d8de51fcfb94a54b8cae834423bd
     };
 
     //Add Location and pass in place, zip 
-    static addLocationToList(location, postalCode) {
+    static addLocationToList(nameOfPlaces, postalCode, dayStarts, dayEnds, hourStarts, hourEnds, drink1Names, drink1Prices, drink2Names, drink2Prices, appetizer1Names, appetizer1Prices, appetizer2Names, appetizer2Prices) {
 
-        let locations = location;
+        let nameOfPlace = nameOfPlaces;
         let postalCodes = postalCode;
 
         //grab element search-list from the DOM
@@ -66,23 +80,36 @@ class UI {
         //create a new row that holds all tr
         const row = document.createElement('tr');
 
+        $(row).data("nameOfPlaces", nameOfPlaces);
+        $(row).data("dayStarts", dayStarts);
+        $(row).data("dayEnds", dayEnds);
+        $(row).data("hourStarts", hourStarts);
+        $(row).data("hourEnds", hourEnds);
+        $(row).data("drink1Names", drink1Names);
+        $(row).data("drink1Prices", drink1Prices);
+        $(row).data("drink2Names", drink2Names);
+        $(row).data("drink2Prices", drink2Prices);
+        $(row).data("appetizer1Names", appetizer1Names);
+        $(row).data("appetizer1Prices", appetizer1Prices);
+        $(row).data("appetizer2Names", appetizer2Names);
+        $(row).data("appetizer2Prices", appetizer2Prices);
+
+
         //add columns to table
         row.innerHTML = `
-        <td>${locations}</td>
+        <td>${nameOfPlace}</td>
         <td>${postalCodes}</td>
-        <td <a href="#" class="btn btn-outline-success btn-xs-2 select"></a>Select</td>
+        <td class="btn btn-outline-danger btn-lg delete">Don't like this place</td> 
         `;
-        //append rows to the list
         list.appendChild(row);
     }
 
-    //Select Location
-    static selectLocation(element) {
-        if (element.classList.contains('select')) {
-
+    //Delect Location
+    static deleteLocation(element) {
+        if (element.classList.contains('delete')) {
             //targets the parentelement of class (delete) which is <td>
             //We need to remove the whole row, so another parentElement which is <tr>
-            //element.parentElement.parentElement.remove();
+            element.parentElement.remove();
         }
     }
 
@@ -104,7 +131,7 @@ class UI {
         //Set timeout so it does not stay on the screen
         //set for 3s
         setTimeout(() => document.querySelector('.alert').remove(),
-            3000);
+            3000)
     };
 };
 
@@ -140,7 +167,9 @@ function initMap() {
     }
     map = new google.maps.Map(document.getElementById("googleMap"), map);
 }
-//Add marker 
+//Add marker console.log(coords);
+
+
 function addMarker(coords) {
     var map = {
         zoom: 8,
@@ -151,6 +180,7 @@ function addMarker(coords) {
     var marker = new google.maps.Marker({
         position: coords,
         map: map
+            //loop through marker(s) 
     });
 }
 
@@ -183,14 +213,10 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     //Call function and pass in zip code input
     getLatLng(zip);
 
-    // }
-    //var e = document.getElementById("datalist");
-    //var strUser = e.options[e.selectedIndex].text;
-
     //Validate input fields
     //place: not necessary
     if (zip === '') {
-        UI.validateMessage('PLEASE ENTER A ZIP CODE', 'danger');
+        UI.validateMessage('Please enter a zip code', 'danger');
     } else {
         //Clears input fields when submit is clicked
         UI.clearFields();
@@ -213,10 +239,29 @@ function closeNav() {
 //EVENT: Select row location to menu
 //Target search-list 
 document.querySelector('#search-list').addEventListener('click', e => {
+    e.preventDefault();
+    //Set key, value target to variables
+    let
+        nOP = $(e.target).data("nameOfPlaces"),
+        dS = $(e.target).data("dayStarts"),
+        dE = $(e.target).data("dayEnds"),
+        hS = $(e.target).data("hourStarts"),
+        hE = $(e.target).data("hourEnds"),
+        d1N = $(e.target).data("drink1Names"),
+        d1P = $(e.target).data("drink1Prices"),
+        d2N = $(e.target).data("drink2Names"),
+        d2P = $(e.target).data("drink2Prices"),
+        a1N = $(e.target).data("appetizer1Names"),
+        a1P = $(e.target).data("appetizer1Prices"),
+        a2N = $(e.target).data("appetizer2Names"),
+        a2P = $(e.target).data("appetizer2Prices");
 
-    //Click to target an element
-    console.log(e.target);
-    UI.selectLocation(e.target);
+    //On click, delete whole row
+    UI.deleteLocation(e.target);
+
+    //Call function and pass in all the values from data.(key, value)
+    UI.displayMenu(nOP, dS, dE, hS, hE, d1N, d1P, d2N, d2P, a1N, a1P, a2N, a2P);
+
 });
 
 //---------------------------END EVENTS----------------------------------------
@@ -251,56 +296,51 @@ function getLatLng(zip) {
             //Getting our api 
             if (postal_code == postalCode) {
                 $.get('/api/all', function(data) {
+                    console.log(data);
+
                     //grab the whole row from the DOM
                     const row = document.querySelector('tr');
-                    for (var j = 0; j <= data.length - 1; j++) {
+                    for (var j = 0; j < data.length - 1; j++) {
                         //Go through data to match zip codes with input zip codes
                         if (data[j]["zip_code"] != postal_code) {
-                            //validatation
-                            UI.validateMessage("COMING SOON....", "info");
+                            UI.validateMessage("Coming Soon..", "info");
+                            break;
                         } else {
-                            for (var i = 0; i <= data.length - 1; i++) {
-                                //query variable
-                                let results = data[i];
+                            let results = data[j];
 
-                                //Grab variables and store into variables
-                                let
-                                //location
-                                    typeOfPlace = results["type"];
+                            //Grab variables and store into variables
+                            let
+                            //location
+                                typeOfPlace = results["type"],
                                 nameOfPlaces = results["place_name"],
-                                    zipCodes = results["zip_code"],
-                                    //days
-                                    dayStarts = results["day_start"],
-                                    dayEnds = results["day_end"],
-                                    //hours
-                                    hourStarts = results["hour_start"],
-                                    hourEnds = results["hour_stop"],
-                                    //drinks
-                                    drink1Names = results["drink1_name"],
-                                    drink1Prices = results["drink1_price"],
-                                    drink2Names = results["drink2_name"],
-                                    drink2Prices = results["drink2_price"],
-                                    //appetizers
-                                    appetizer1Names = results["appetizer1_name"],
-                                    appetizer1Prices = results["appetizer1_price"],
-                                    appetizer2Names = results["appetizer2_name"],
-                                    appetizer2Prices = results["appetizer2_price"],
-                                    //coords
-                                    lats = results["lat"],
-                                    lngs = results["lng"],
-                                    coords = { lat: lats, lng: lngs };
+                                zipCodes = results["zip_code"],
+                                //days
+                                dayStarts = results["day_start"],
+                                dayEnds = results["day_end"],
+                                //hours
+                                hourStarts = results["hour_start"],
+                                hourEnds = results["hour_stop"],
+                                //drinks
+                                drink1Names = results["drink1_name"],
+                                drink1Prices = results["drink1_price"],
+                                drink2Names = results["drink2_name"],
+                                drink2Prices = results["drink2_price"],
+                                //appetizers
+                                appetizer1Names = results["appetizer1_name"],
+                                appetizer1Prices = results["appetizer1_price"],
+                                appetizer2Names = results["appetizer2_name"],
+                                appetizer2Prices = results["appetizer2_price"],
+                                //coords
+                                lats = results["lat"],
+                                lngs = results["lng"];
+                            let coords = { lat: lats, lng: lngs };
 
-                                //Call functions
 
-                                //This function gets the values from db and adds to the table
-                                UI.addLocationToList(nameOfPlaces, zipCodes);
+                            //This function gets the values from db and adds to the table
+                            UI.addLocationToList(nameOfPlaces, zipCodes, dayStarts, dayEnds, hourStarts, hourEnds, drink1Names, drink1Prices, drink2Names, drink2Prices, appetizer1Names, appetizer1Prices, appetizer2Names, appetizer2Prices);
 
-                                //Displays Menu to card
-                                UI.displayMenu(nameOfPlaces, dayStarts, dayEnds, hourStarts, hourEnds, drink1Names, drink1Prices, drink2Names, drink2Prices, appetizer1Names, appetizer1Prices, appetizer2Names, appetizer2Names);
-
-                                //adds markers for locations 
-                                addMarker(coords);
-                            }
+                            //adds markers for locations 
+                            addMarker(coords);
                         }
                     }
                 });

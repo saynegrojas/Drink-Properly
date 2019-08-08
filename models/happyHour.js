@@ -28,63 +28,63 @@ module.exports = function(sequelize, DataTypes) {
         },
         drink1_name: {
             type: Sequelize.STRING,
-            allowNull: true,
-            defaultStatus: "See store for drink specials"
+            allowNull: false,
+            defaultValue: "See store for drink specials"
         },
         drink1_price: {
             type: Sequelize.DECIMAL(10, 2),
-            allowNull: true,
-            defaultStatus: "See store for drink specials"
+            allowNull: false,
+            defaultValue: 0.0
         },
         drink2_name: {
             type: Sequelize.STRING,
-            allowNull: true,
-            defaultStatus: "See store for drink specials"
+            allowNull: false,
+            defaultValue: "See store for drink specials"
         },
         drink2_price: {
             type: Sequelize.DECIMAL(10, 2),
-            allowNull: true,
-            defaultStatus: "See store for drink specials"
+            allowNull: false,
+            defaultValue: 0.0
         },
         appetizer1_name: {
             type: Sequelize.STRING,
-            allowNull: true,
-            defaultStatus: "See store for appetizer specials"
+            allowNull: false,
+            defaultValue: "See store for appetizer specials"
         },
         appetizer1_price: {
             type: Sequelize.DECIMAL(10, 2),
-            allowNull: true,
-            defaultStatus: "See store for appetizer specials"
+            allowNull: false,
+            defaultValue: 0.0
         },
         appetizer2_name: {
             type: Sequelize.STRING,
-            allowNull: true,
-            defaultStatus: "See store for appetizer specials"
+            allowNull: false,
+            defaultValue: "See store for appetizer specials"
         },
         appetizer2_price: {
             type: Sequelize.DECIMAL(10, 2),
-            allowNull: true,
-            defaultStatus: "See store for appetizer specials"
+            allowNull: false,
+            defaultValue: 0.0
         },
         hour_start: {
             type: Sequelize.TIME,
-            allowNull: true,
+            allowNull: false,
             defaultStatus: "Hours may vary"
         },
         hour_stop: {
             type: Sequelize.TIME,
-            allowNull: true,
+            allowNull: false,
             defaultStatus: "Hours may vary"
         },
         day_start: {
             type: Sequelize.STRING,
-            allowNull: true,
-            defaultStatus: "Days may vary"
+            allowNull: false,
+            defaultValue: "Days may vary"
         },
         day_end: {
             type: Sequelize.STRING,
-            allowNull: true,
-            defaultStatus: "Days may vary"
+            allowNull: false,
+            defaultValue: "Days may vary"
         },
         lat: {
             type: Sequelize.FLOAT(10, 7),

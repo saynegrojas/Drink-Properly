@@ -18,7 +18,7 @@ module.exports = function(app){
     app.get('/api/happyHour/place_name/:place_name', (req, res) => {
         db.HappyHour.findAll({
             where: {
-                place_name: req.params.happyHour
+                place_name: req.params.place_name
             }
         }).then(result => {
             res.json(result);

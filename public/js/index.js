@@ -9,7 +9,6 @@
 var lineItems = [];
 
 class UI {
-
     //Display Menu
     static displayMenu(j) {
         console.log(j);
@@ -58,7 +57,6 @@ zip_code: 92553 */
 
         const menu = document.querySelector(".menu");
         const card_body = document.createElement('card-body');
-
         card_body.innerHTML = `
             <p class="text-center">${namePlace}</p>
             <p class="text-center">Weekly</p>
@@ -81,16 +79,13 @@ zip_code: 92553 */
             // }
         menu.appendChild(card_body);
     };
-
     //Add Location and pass in place, zip 
     static addLocationToList(nameOfPlaces, postalCode, dayStarts, dayEnds, hourStarts, hourEnds, drink1Names, drink1Prices, drink2Names, drink2Prices, appetizer1Names, appetizer1Prices, appetizer2Names, appetizer2Prices, j) {
 
         let nameOfPlace = nameOfPlaces;
         let postalCodes = postalCode;
-
         //grab element search-list from the DOM
         const list = document.querySelector('#search-list');
-
         //create a new row that holds all tr
         const row = document.createElement('tr');
         //row.id = "r_" + j.toString();
@@ -112,8 +107,6 @@ zip_code: 92553 */
         $(row).data("appetizer1Prices", appetizer1Prices);
         $(row).data("appetizer2Names", appetizer2Names);
         $(row).data("appetizer2Prices", appetizer2Prices);
-
-
         //add columns to table
         row.innerHTML = `
         <td onclick="UI.showMenu(this)" id="r_` + j.toString() + `">${nameOfPlace}</td>
@@ -138,13 +131,11 @@ zip_code: 92553 */
             element.parentElement.remove();
         }
     }
-
     //Clears the input fields after clicking submit
     static clearFields() {
-        document.querySelector('#place').value = '';
+        //document.querySelector('#place').value = '';
         document.querySelector('#zip-code').value = '';
     };
-
     //Show Validation Message when inputs are invalid
     static validateMessage(message, className) {
         const div = document.createElement('div');
@@ -153,7 +144,6 @@ zip_code: 92553 */
         const container = document.querySelector('.container');
         const form = document.querySelector('#search-form');
         container.insertBefore(div, form);
-
         //Set timeout so it does not stay on the screen
         //set for 3s
         setTimeout(() => document.querySelector('.alert').remove(),
@@ -171,9 +161,7 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
 };
-
 //---------------------------END OF UI CLASSS----------------------------------
-
 //--------------------------------
 //      Show Map:             
 //          initMap
@@ -187,7 +175,7 @@ function initMap() {
     var myLocation = new google.maps.LatLng(33.9746973, -117.33756599351244);
     //map options
     map = {
-        zoom: 11,
+        zoom: 8,
         center: myLocation,
         mapTypeId: 'roadmap'
     }
@@ -213,36 +201,29 @@ function addMarker2(coords, name) {
     // To add the marker to the map, call setMap();
     marker.setMap(map);
 }
-
 //---------------------------END SHOW MAP--------------------------------------
-
 //--------------------------------
 //      Store class: 
 //          handles storage
 //--------------------------------
-
 //--------------------------------
 //      Events: 
 //          display location
 //          Add location
 //          Remove location
 //--------------------------------
-
 //EVENT: Initiate Map on Load 
 document.addEventListener("DOMContentLoaded", initMap);
-
 //EVENT: Add location on submit
 document.querySelector('#search-form').addEventListener('submit', e => {
     //Prevent actual submit
     e.preventDefault();
     $('.transform').toggleClass('transform-active');
     //Get form values
-    const place = document.querySelector('#place').value;
+    //const place = document.querySelector('#place').value;
     const zip = document.querySelector('#zip-code').value;
-
     //Call function and pass in zip code input
     getLatLng(zip);
-
     //Validate input fields
     //place: not necessary
     if (zip === '') {
@@ -283,10 +264,7 @@ document.querySelector('#search-list').addEventListener('click', e => {
     // UI.displayMenu(nOP, dS, dE, hS, hE, d1N, d1P, d2N, d2P, a1N, a1P, a2N, a2P);
 
 });
-
 //---------------------------END EVENTS----------------------------------------
-
-
 //--------------------------------
 //      Results from data: 
 //          Init map
@@ -294,7 +272,6 @@ document.querySelector('#search-list').addEventListener('click', e => {
 //          Add markers
 //          Add data to table
 //--------------------------------
-
 //Function get lat and lng from zip code input by making an ajax call
 function getLatLng(zip) {
     //Set parameter to variable 
@@ -304,20 +281,16 @@ function getLatLng(zip) {
         type: "GET",
         success: function(data) {
             //console.log(data);
-
             //Grab lat and lng to create markers for map
-
             //Set chosen data to variables 
             //zip, lat, lng
             postalCode = (data["results"][0]["address_components"][0]["long_name"]);
             let lat = (data["results"][0]["geometry"]["location"]["lat"]);
             let lng = (data["results"][0]["geometry"]["location"]["lng"]);
-
             //Getting our api 
             if (postal_code == postalCode) {
                 $.get('/api/all', function(data) {
                     console.log(data);
-
                     //grab the whole row from the DOM
                     const row = document.querySelector('tr');
                     lineItems = data;
@@ -328,7 +301,6 @@ function getLatLng(zip) {
                             break;
                         } else {
                             let results = data[j];
-
                             //Grab variables and store into variables
                             let
                             //location
@@ -355,8 +327,6 @@ function getLatLng(zip) {
                                 lats = results["lat"],
                                 lngs = results["lng"];
                             let coords = { lat: lats, lng: lngs };
-
-
                             //This function gets the values from db and adds to the table
                             UI.addLocationToList(nameOfPlaces, zipCodes, dayStarts, dayEnds, hourStarts, hourEnds, drink1Names, drink1Prices, drink2Names, drink2Prices, appetizer1Names, appetizer1Prices, appetizer2Names, appetizer2Prices, j);
 

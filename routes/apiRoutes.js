@@ -50,6 +50,4 @@ module.exports = function(app){
 
 
 /*const Location = require('../models/happyHour.js');
-
-
 */

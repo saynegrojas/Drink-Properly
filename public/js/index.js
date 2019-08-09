@@ -270,7 +270,6 @@ document.querySelector('#search-list').addEventListener('click', e => {
 
     //On click, delete whole row
     UI.deleteLocation(e.target);
-    console.log("hi");
 
     //Call function and pass in all the values from data.(key, value)
     // UI.displayMenu(nOP, dS, dE, hS, hE, d1N, d1P, d2N, d2P, a1N, a1P, a2N, a2P);

@@ -125,13 +125,13 @@ zip_code: 92553 */
 
     //Delect Location
     static deleteLocation(element) {
-        if (element.classList.contains('delete')) {
-            //targets the parentelement of class (delete) which is <td>
-            //We need to remove the whole row, so another parentElement which is <tr>
-            element.parentElement.remove();
+            if (element.classList.contains('delete')) {
+                //targets the parentelement of class (delete) which is <td>
+                //We need to remove the whole row, so another parentElement which is <tr>
+                element.parentElement.remove();
+            }
         }
-    }
-    //Clears the input fields after clicking submit
+        //Clears the input fields after clicking submit
     static clearFields() {
         //document.querySelector('#place').value = '';
         document.querySelector('#zip-code').value = '';

@@ -209,7 +209,7 @@ function initMap() {
     var myLocation = new google.maps.LatLng(33.9746973, -117.33756599351244);
     //map options
     map = {
-        zoom: 8,
+        zoom: 11,
         center: myLocation,
         mapTypeId: 'roadmap'
     }

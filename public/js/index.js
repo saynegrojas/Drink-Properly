@@ -141,7 +141,7 @@ zip_code: 92553 */
 
     //Clears the input fields after clicking submit
     static clearFields() {
-        document.querySelector('#place').value = '';
+        //document.querySelector('#place').value = '';
         document.querySelector('#zip-code').value = '';
     };
 
@@ -237,7 +237,7 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     e.preventDefault();
     $('.transform').toggleClass('transform-active');
     //Get form values
-    const place = document.querySelector('#place').value;
+    //const place = document.querySelector('#place').value;
     const zip = document.querySelector('#zip-code').value;
 
     //Call function and pass in zip code input

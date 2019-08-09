@@ -1,9 +1,8 @@
 body{
     width: 100%;
-    background-image: url('../img/GregsHouse.jpg');
     background-position: center;
+    background-image: url('../img/GregsHouse.jpg');
     background-size: cover;
-    opacity: 0.5;
 }
 .sidenav {
     height: 100%;

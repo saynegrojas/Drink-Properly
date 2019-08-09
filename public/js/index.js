@@ -13,7 +13,9 @@ class UI {
     //Display Menu
     static displayMenu(j) {
         console.log(j);
-
+        if (document.querySelector(".menu") != null) {
+            document.querySelector(".menu").innerHTML = "<div id='card'> </div>";
+        }
         //Set params as variables
         let k = lineItems[j];
         let
@@ -178,11 +180,13 @@ function closeNav() {
 //          markers
 //--------------------------------
 //initizialize map
+var map = {};
+
 function initMap() {
     //Initialize variables
     var myLocation = new google.maps.LatLng(33.9746973, -117.33756599351244);
     //map options
-    var map = {
+    map = {
         zoom: 8,
         center: myLocation,
         mapTypeId: 'roadmap'
@@ -192,18 +196,22 @@ function initMap() {
 //Add marker console.log(coords);
 
 
-function addMarker(coords) {
-    var map = {
-        zoom: 8,
-        center: coords,
-        mapTypeId: 'roadmap'
-    }
-    map = new google.maps.Map(document.getElementById("googleMap"), map);
+function addMarker2(coords, name) {
+
+    //map = new google.maps.Map(document.getElementById("googleMap"), map);
+    var mapOptions = {
+            zoom: 4,
+            center: coords
+        }
+        //map = new ngoogle.maps.Map(document.getElementById("map"), mapOptions);
+
     var marker = new google.maps.Marker({
         position: coords,
-        map: map
-            //loop through marker(s) 
+        title: name
     });
+    console.log("got here");
+    // To add the marker to the map, call setMap();
+    marker.setMap(map);
 }
 
 //---------------------------END SHOW MAP--------------------------------------
@@ -354,7 +362,8 @@ function getLatLng(zip) {
                             UI.addLocationToList(nameOfPlaces, zipCodes, dayStarts, dayEnds, hourStarts, hourEnds, drink1Names, drink1Prices, drink2Names, drink2Prices, appetizer1Names, appetizer1Prices, appetizer2Names, appetizer2Prices, j);
 
                             //adds markers for locations 
-                            addMarker(coords);
+                            console.log(coords);
+                            addMarker2(coords, nameOfPlaces);
                         }
                     }
                 });
@@ -362,4 +371,15 @@ function getLatLng(zip) {
         }
     });
 };
+
+function addMarker(location, map) {
+    // Add the marker at the clicked location, and add the next-available label
+    // from the array of alphabetical characters.
+    var marker = new google.maps.Marker({
+        position: location,
+        title: "test",
+
+    });
+    marker.setMap(map);
+}
 //---------------------------END RESULTS----------------------------------------

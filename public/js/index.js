@@ -6,11 +6,8 @@
 //          Clear fields
 //          Validation
 //--------------------------------
-<<<<<<< HEAD
-=======
 var lineItems = [];
 
->>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec
 class UI {
     //Display Menu
     static displayMenu(j) {
@@ -21,25 +18,6 @@ class UI {
         //Set params as variables
         let k = lineItems[j];
         let
-<<<<<<< HEAD
-            NamePlace = nameP,
-            dayStart = dayS,
-            dayEnd = dayE,
-            hourStart = hourS,
-            hourEnd = hourE,
-            drink1Name = drink1N, 
-            drink1Price = drink1P,
-            drink2Name = drink2N,
-            drink2Price = drink2P,
-            appetizer1Name = appetizer1N,
-            appetizer1Price = appetizer1P,
-            appetizer2Name = appetizer2N,
-            appetizer2Price = appetizer2P;
-            
-        //Formatted time to regular hour time    
-        let newHourStart = hourStart.slice(1,5);
-        let newHourEnd = hourEnd.slice(1, 5);
-=======
             namePlace = k.place_name,
             dayStart = k.day_start,
             dayEnd = k.day_end,
@@ -75,7 +53,6 @@ zip_code: 92553 */
         //let newHourStart = hourStart.slice(1, 5);
         //let newHourEnd = hourEnd.slice(1, 5);
         //console.log(newHourStart)
->>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec
         //grab menu class to append data inside card, card-body
 
         const menu = document.querySelector(".menu");
@@ -103,28 +80,20 @@ zip_code: 92553 */
         menu.appendChild(card_body);
     };
     //Add Location and pass in place, zip 
-<<<<<<< HEAD
-    static addLocationToList(nameOfPlaces, postalCode, dayStarts, dayEnds, hourStarts, hourEnds, drink1Names, drink1Prices, drink2Names, drink2Prices, appetizer1Names, appetizer1Prices, appetizer2Names, appetizer2Prices) {
-=======
     static addLocationToList(nameOfPlaces, postalCode, dayStarts, dayEnds, hourStarts, hourEnds, drink1Names, drink1Prices, drink2Names, drink2Prices, appetizer1Names, appetizer1Prices, appetizer2Names, appetizer2Prices, j) {
 
->>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec
         let nameOfPlace = nameOfPlaces;
         let postalCodes = postalCode;
         //grab element search-list from the DOM
         const list = document.querySelector('#search-list');
         //create a new row that holds all tr
         const row = document.createElement('tr');
-<<<<<<< HEAD
-        //key, value data
-=======
         //row.id = "r_" + j.toString();
         row.onclick = function(e) {
 
             }
             //.addEventListener('click', function(){ alert('blah');}, false);
 
->>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec
         $(row).data("nameOfPlaces", nameOfPlaces);
         $(row).data("dayStarts", dayStarts);
         $(row).data("dayEnds", dayEnds);
@@ -146,8 +115,6 @@ zip_code: 92553 */
         `;
         list.appendChild(row);
     }
-<<<<<<< HEAD
-=======
     static showMenu(el) {
         console.log(el);
         console.log(lineItems);
@@ -156,7 +123,6 @@ zip_code: 92553 */
         UI.displayMenu(parseInt(el.id.replace("r_", "")));
     }
 
->>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec
     //Delect Location
     static deleteLocation(element) {
         if (element.classList.contains('delete')) {
@@ -167,7 +133,7 @@ zip_code: 92553 */
     }
     //Clears the input fields after clicking submit
     static clearFields() {
-        document.querySelector('#place').value = '';
+        //document.querySelector('#place').value = '';
         document.querySelector('#zip-code').value = '';
     };
     //Show Validation Message when inputs are invalid
@@ -209,22 +175,13 @@ function initMap() {
     var myLocation = new google.maps.LatLng(33.9746973, -117.33756599351244);
     //map options
     map = {
-        zoom: 11,
+        zoom: 8,
         center: myLocation,
         mapTypeId: 'roadmap'
     }
     map = new google.maps.Map(document.getElementById("googleMap"), map);
 }
 //Add marker console.log(coords);
-<<<<<<< HEAD
-function addMarker(coords) {
-    var map = {
-        zoom: 8,
-        center: coords,
-        mapTypeId: 'roadmap'
-    }
-    map = new google.maps.Map(document.getElementById("googleMap"), map);
-=======
 
 
 function addMarker2(coords, name) {
@@ -236,7 +193,6 @@ function addMarker2(coords, name) {
         }
         //map = new ngoogle.maps.Map(document.getElementById("map"), mapOptions);
 
->>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec
     var marker = new google.maps.Marker({
         position: coords,
         title: name
@@ -264,7 +220,7 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     e.preventDefault();
     $('.transform').toggleClass('transform-active');
     //Get form values
-    const place = document.querySelector('#place').value;
+    //const place = document.querySelector('#place').value;
     const zip = document.querySelector('#zip-code').value;
     //Call function and pass in zip code input
     getLatLng(zip);
@@ -277,11 +233,8 @@ document.querySelector('#search-form').addEventListener('submit', e => {
         UI.clearFields();
     }
 });
-<<<<<<< HEAD
-=======
 /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
 
->>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec
 //EVENT: Select row location to menu
 //Target search-list 
 document.querySelector('#search-list').addEventListener('click', e => {
@@ -375,12 +328,8 @@ function getLatLng(zip) {
                                 lngs = results["lng"];
                             let coords = { lat: lats, lng: lngs };
                             //This function gets the values from db and adds to the table
-<<<<<<< HEAD
-                            UI.addLocationToList(nameOfPlaces, zipCodes, dayStarts, dayEnds, hourStarts, hourEnds, drink1Names, drink1Prices, drink2Names, drink2Prices, appetizer1Names, appetizer1Prices, appetizer2Names, appetizer2Prices);
-=======
                             UI.addLocationToList(nameOfPlaces, zipCodes, dayStarts, dayEnds, hourStarts, hourEnds, drink1Names, drink1Prices, drink2Names, drink2Prices, appetizer1Names, appetizer1Prices, appetizer2Names, appetizer2Prices, j);
 
->>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec
                             //adds markers for locations 
                             console.log(coords);
                             addMarker2(coords, nameOfPlaces);
@@ -391,27 +340,6 @@ function getLatLng(zip) {
         }
     });
 };
-<<<<<<< HEAD
-//---------------------------END RESULTS----------------------------------------
-// function closeNav() {
-//     document.getElementById("mySidenav").style.width = "0";
-//     document.getElementById("main").style.marginLeft = "0";
-//     document.body.style.backgroundColor = "white";
-// };
-//$('.transform').toggleClass('transform-active');
-/** Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
-// function openNav() {
-//     document.getElementById("mySidenav").style.width = "250px";
-//     document.getElementById("main").style.marginLeft = "250px";
-//     document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-// }
- /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
-// function closeNav() {
-//     document.getElementById("mySidenav").style.width = "0";
-//     document.getElementById("main").style.marginLeft = "0";
-//     document.body.style.backgroundColor = "white";
-// }
-=======
 
 function addMarker(location, map) {
     // Add the marker at the clicked location, and add the next-available label
@@ -424,4 +352,3 @@ function addMarker(location, map) {
     marker.setMap(map);
 }
 //---------------------------END RESULTS----------------------------------------
->>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec

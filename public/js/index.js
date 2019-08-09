@@ -6,11 +6,22 @@
 //          Clear fields
 //          Validation
 //--------------------------------
+<<<<<<< HEAD
+=======
+var lineItems = [];
+
+>>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec
 class UI {
     //Display Menu
-    static displayMenu(nameP,dayS, dayE,hourS, hourE, drink1N, drink1P, drink2N, drink2P, appetizer1N, appetizer1P, appetizer2N, appetizer2P) {
+    static displayMenu(j) {
+        console.log(j);
+        if (document.querySelector(".menu") != null) {
+            document.querySelector(".menu").innerHTML = "<div id='card'> </div>";
+        }
         //Set params as variables
+        let k = lineItems[j];
         let
+<<<<<<< HEAD
             NamePlace = nameP,
             dayStart = dayS,
             dayEnd = dayE,
@@ -28,36 +39,92 @@ class UI {
         //Formatted time to regular hour time    
         let newHourStart = hourStart.slice(1,5);
         let newHourEnd = hourEnd.slice(1, 5);
+=======
+            namePlace = k.place_name,
+            dayStart = k.day_start,
+            dayEnd = k.day_end,
+            hourStart = k.hour_start,
+            hourEnd = k.hour_stop,
+            drink1Name = k.drink1_name,
+            drink1Price = k.drink1_price,
+            drink2Name = k.drink2_name,
+            drink2Price = k.drink2_price,
+            appetizer1Name = k.appetizer1_name,
+            appetizer1Price = k.appetizer1_price,
+            appetizer2Name = k.appetizer2_name,
+            appetizer2Price = k.appetizer1_price;
+
+        /**appetizer1_name: "Loaded Nachos"
+appetizer1_price: "3.00"
+appetizer2_name: "Chicken Fingers"
+appetizer2_price: "3.00"
+day_end: "Friday"
+day_start: "Monday"
+drink1_name: "Bud Light"
+drink1_price: "2.00"
+drink2_name: "Coors Light"
+drink2_price: "2.00"
+hour_start: "03:00:00"
+hour_stop: "05:00:00"
+id: 1
+lat: 33.9394264
+lng: -117.2764969
+place_name: "Buffalo Wild Wings"
+type: "restaurant"
+zip_code: 92553 */
+        //let newHourStart = hourStart.slice(1, 5);
+        //let newHourEnd = hourEnd.slice(1, 5);
+        //console.log(newHourStart)
+>>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec
         //grab menu class to append data inside card, card-body
+
         const menu = document.querySelector(".menu");
         const card_body = document.createElement('card-body');
         card_body.innerHTML = `
-            <p class="text-center">${NamePlace}</p>
+            <p class="text-center">${namePlace}</p>
             <p class="text-center">Weekly</p>
             <p class="text-center">${dayStart} - ${dayEnd}</p>
             <p class="text-center">Hours</p>
-            <p class="text-center">${newHourStart}pm - ${newHourEnd}pm</p>
+            <p class="text-center">${hourStart}pm - ${hourEnd}pm</p>
             <p class="text-center"> DRINK SPECIALS </p>
             <p class="text-center">${drink1Name}_________$${drink1Price}</p>
             <p class="text-center">${drink2Name}_________$${drink2Price}</p>
             <p class="text-center">APPETIZER SPECIALS</p>
             <p class="text-center">${appetizer1Name}_________$${appetizer1Price}</p>
             <p class="text-center">${appetizer2Name}_________$${appetizer2Price}</p>
-        `
-        // if(card_body.length === 'undefined'){
-        //     card_body.length == 'More coming soon'
-        // }
-         menu.appendChild(card_body);
+            `
+            // menu.appendChild(card_body);
+            //hours
+            //drinks
+            //appetize
+            // if(card_body.length === 'undefined'){
+            //     card_body.length == 'More coming soon'
+            // }
+        menu.appendChild(card_body);
     };
     //Add Location and pass in place, zip 
+<<<<<<< HEAD
     static addLocationToList(nameOfPlaces, postalCode, dayStarts, dayEnds, hourStarts, hourEnds, drink1Names, drink1Prices, drink2Names, drink2Prices, appetizer1Names, appetizer1Prices, appetizer2Names, appetizer2Prices) {
+=======
+    static addLocationToList(nameOfPlaces, postalCode, dayStarts, dayEnds, hourStarts, hourEnds, drink1Names, drink1Prices, drink2Names, drink2Prices, appetizer1Names, appetizer1Prices, appetizer2Names, appetizer2Prices, j) {
+
+>>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec
         let nameOfPlace = nameOfPlaces;
         let postalCodes = postalCode;
         //grab element search-list from the DOM
         const list = document.querySelector('#search-list');
         //create a new row that holds all tr
         const row = document.createElement('tr');
+<<<<<<< HEAD
         //key, value data
+=======
+        //row.id = "r_" + j.toString();
+        row.onclick = function(e) {
+
+            }
+            //.addEventListener('click', function(){ alert('blah');}, false);
+
+>>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec
         $(row).data("nameOfPlaces", nameOfPlaces);
         $(row).data("dayStarts", dayStarts);
         $(row).data("dayEnds", dayEnds);
@@ -73,12 +140,23 @@ class UI {
         $(row).data("appetizer2Prices", appetizer2Prices);
         //add columns to table
         row.innerHTML = `
-        <td>${nameOfPlace}</td>
+        <td onclick="UI.showMenu(this)" id="r_` + j.toString() + `">${nameOfPlace}</td>
         <td>${postalCodes}</td>
-        <td class="btn btn-outline-danger btn-lg delete">Don't like this place</td> 
+        <td onclick="deleteLocation(this)" class="btn btn-outline-danger btn-lg delete">Don't like this place</td> 
         `;
         list.appendChild(row);
     }
+<<<<<<< HEAD
+=======
+    static showMenu(el) {
+        console.log(el);
+        console.log(lineItems);
+
+        openNav();
+        UI.displayMenu(parseInt(el.id.replace("r_", "")));
+    }
+
+>>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec
     //Delect Location
     static deleteLocation(element) {
         if (element.classList.contains('delete')) {
@@ -103,7 +181,19 @@ class UI {
         //Set timeout so it does not stay on the screen
         //set for 3s
         setTimeout(() => document.querySelector('.alert').remove(),
-        3000)};
+            3000)
+    };
+};
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
 };
 //---------------------------END OF UI CLASSS----------------------------------
 //--------------------------------
@@ -112,11 +202,13 @@ class UI {
 //          markers
 //--------------------------------
 //initizialize map
+var map = {};
+
 function initMap() {
     //Initialize variables
     var myLocation = new google.maps.LatLng(33.9746973, -117.33756599351244);
     //map options
-    var map = {
+    map = {
         zoom: 8,
         center: myLocation,
         mapTypeId: 'roadmap'
@@ -124,6 +216,7 @@ function initMap() {
     map = new google.maps.Map(document.getElementById("googleMap"), map);
 }
 //Add marker console.log(coords);
+<<<<<<< HEAD
 function addMarker(coords) {
     var map = {
         zoom: 8,
@@ -131,11 +224,26 @@ function addMarker(coords) {
         mapTypeId: 'roadmap'
     }
     map = new google.maps.Map(document.getElementById("googleMap"), map);
+=======
+
+
+function addMarker2(coords, name) {
+
+    //map = new google.maps.Map(document.getElementById("googleMap"), map);
+    var mapOptions = {
+            zoom: 4,
+            center: coords
+        }
+        //map = new ngoogle.maps.Map(document.getElementById("map"), mapOptions);
+
+>>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec
     var marker = new google.maps.Marker({
         position: coords,
-        map: map
-        //loop through marker(s) 
+        title: name
     });
+    console.log("got here");
+    // To add the marker to the map, call setMap();
+    marker.setMap(map);
 }
 //---------------------------END SHOW MAP--------------------------------------
 //--------------------------------
@@ -154,7 +262,7 @@ document.addEventListener("DOMContentLoaded", initMap);
 document.querySelector('#search-form').addEventListener('submit', e => {
     //Prevent actual submit
     e.preventDefault();
-    
+    $('.transform').toggleClass('transform-active');
     //Get form values
     const place = document.querySelector('#place').value;
     const zip = document.querySelector('#zip-code').value;
@@ -169,32 +277,39 @@ document.querySelector('#search-form').addEventListener('submit', e => {
         UI.clearFields();
     }
 });
+<<<<<<< HEAD
+=======
+/* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+
+>>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec
 //EVENT: Select row location to menu
 //Target search-list 
 document.querySelector('#search-list').addEventListener('click', e => {
+    console.log("11");
+
     e.preventDefault();
-        //Set key, value target to variables
-    let
-        nOP = $(e.target).data("nameOfPlaces"),
-        dS = $(e.target).data("dayStarts"),
-        dE = $(e.target).data("dayEnds"),
-        hS = $(e.target).data("hourStarts"),
-        hE = $(e.target).data("hourEnds"),
-        d1N = $(e.target).data("drink1Names"),
-        d1P = $(e.target).data("drink1Prices"),
-        d2N = $(e.target).data("drink2Names"),
-        d2P = $(e.target).data("drink2Prices"),
-        a1N = $(e.target).data("appetizer1Names"),
-        a1P = $(e.target).data("appetizer1Prices"),
-        a2N = $(e.target).data("appetizer2Names"),
-        a2P = $(e.target).data("appetizer2Prices");
-        
+    //Set key, value target to variables
+    // let
+    //     nOP = $(e.target).data("nameOfPlaces"),
+    //     dS = $(e.target).data("dayStarts"),
+    //     dE = $(e.target).data("dayEnds"),
+    //     hS = $(e.target).data("hourStarts"),
+    //     hE = $(e.target).data("hourEnds"),
+    //     d1N = $(e.target).data("drink1Names"),
+    //     d1P = $(e.target).data("drink1Prices"),
+    //     d2N = $(e.target).data("drink2Names"),
+    //     d2P = $(e.target).data("drink2Prices"),
+    //     a1N = $(e.target).data("appetizer1Names"),
+    //     a1P = $(e.target).data("appetizer1Prices"),
+    //     a2N = $(e.target).data("appetizer2Names"),
+    //     a2P = $(e.target).data("appetizer2Prices");
+
     //On click, delete whole row
     UI.deleteLocation(e.target);
-    
+
     //Call function and pass in all the values from data.(key, value)
-    UI.displayMenu(nOP,dS, dE, hS, hE, d1N, d1P, d2N, d2P, a1N, a1P, a2N, a2P);
-  
+    // UI.displayMenu(nOP, dS, dE, hS, hE, d1N, d1P, d2N, d2P, a1N, a1P, a2N, a2P);
+
 });
 //---------------------------END EVENTS----------------------------------------
 //--------------------------------
@@ -211,7 +326,7 @@ function getLatLng(zip) {
     $.ajax({
         url: `https://maps.googleapis.com/maps/api/geocode/json?address=${postal_code}&key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54`,
         type: "GET",
-        success: function (data) {
+        success: function(data) {
             //console.log(data);
             //Grab lat and lng to create markers for map
             //Set chosen data to variables 
@@ -221,11 +336,12 @@ function getLatLng(zip) {
             let lng = (data["results"][0]["geometry"]["location"]["lng"]);
             //Getting our api 
             if (postal_code == postalCode) {
-                $.get('/api/all', function (data) {
+                $.get('/api/all', function(data) {
                     console.log(data);
                     //grab the whole row from the DOM
                     const row = document.querySelector('tr');
-                    for (var j = 0; j < data.length -1; j++) {
+                    lineItems = data;
+                    for (var j = 0; j < data.length - 1; j++) {
                         //Go through data to match zip codes with input zip codes
                         if (data[j]["zip_code"] != postal_code) {
                             UI.validateMessage("Coming Soon..", "info");
@@ -234,7 +350,7 @@ function getLatLng(zip) {
                             let results = data[j];
                             //Grab variables and store into variables
                             let
-                                //location
+                            //location
                                 typeOfPlace = results["type"],
                                 nameOfPlaces = results["place_name"],
                                 zipCodes = results["zip_code"],
@@ -259,9 +375,15 @@ function getLatLng(zip) {
                                 lngs = results["lng"];
                             let coords = { lat: lats, lng: lngs };
                             //This function gets the values from db and adds to the table
+<<<<<<< HEAD
                             UI.addLocationToList(nameOfPlaces, zipCodes, dayStarts, dayEnds, hourStarts, hourEnds, drink1Names, drink1Prices, drink2Names, drink2Prices, appetizer1Names, appetizer1Prices, appetizer2Names, appetizer2Prices);
+=======
+                            UI.addLocationToList(nameOfPlaces, zipCodes, dayStarts, dayEnds, hourStarts, hourEnds, drink1Names, drink1Prices, drink2Names, drink2Prices, appetizer1Names, appetizer1Prices, appetizer2Names, appetizer2Prices, j);
+
+>>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec
                             //adds markers for locations 
-                            addMarker(coords);
+                            console.log(coords);
+                            addMarker2(coords, nameOfPlaces);
                         }
                     }
                 });
@@ -269,6 +391,7 @@ function getLatLng(zip) {
         }
     });
 };
+<<<<<<< HEAD
 //---------------------------END RESULTS----------------------------------------
 // function closeNav() {
 //     document.getElementById("mySidenav").style.width = "0";
@@ -288,3 +411,17 @@ function getLatLng(zip) {
 //     document.getElementById("main").style.marginLeft = "0";
 //     document.body.style.backgroundColor = "white";
 // }
+=======
+
+function addMarker(location, map) {
+    // Add the marker at the clicked location, and add the next-available label
+    // from the array of alphabetical characters.
+    var marker = new google.maps.Marker({
+        position: location,
+        title: "test",
+
+    });
+    marker.setMap(map);
+}
+//---------------------------END RESULTS----------------------------------------
+>>>>>>> b64f03e6cf432db14d3e288ec98f36a5e72922ec

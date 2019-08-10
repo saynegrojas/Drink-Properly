@@ -3,6 +3,7 @@ body {
     background-image: url(../img/GregsHouse.jpg);
     background-size: cover;
     background-position: center center;
+    background-attachment: fixed;
 }
 
 .sidenav {
@@ -57,11 +58,25 @@ body {
     margin-left: 50px;
 }
 
+.table {}
+
 .close-btn {
-    position: absolute;
+    <<<<<<< HEAD position: absolute;
     bottom: 40%;
     right: 50%;
-    margin-top: 25px;
+    =======font-size: 1rem;
+    position: absolute;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.65);
+    border: 2px solid white;
+    bottom: 40%;
+    right: 40%;
+    >>>>>>>38208c74630b6e81db6fa71a49eca81d0ffef346 margin-top: 25px;
+}
+
+.close-btn:hover {
+    opacity: 1;
+    background-color: orange;
 }
 
 #submit-button {
@@ -107,6 +122,7 @@ input:hover {
 }
 
 .table {
-    background-color: rgb(255, 255, 255);
-    color: #000;
+    background-color: rgba(0, 0, 0, 0.65);
+    border: solid orange;
+    padding: 75px;
 }

@@ -32,29 +32,6 @@ class UI {
             appetizer2Name = k.appetizer2_name,
             appetizer2Price = k.appetizer1_price;
 
-        /**appetizer1_name: "Loaded Nachos"
-appetizer1_price: "3.00"
-appetizer2_name: "Chicken Fingers"
-appetizer2_price: "3.00"
-day_end: "Friday"
-day_start: "Monday"
-drink1_name: "Bud Light"
-drink1_price: "2.00"
-drink2_name: "Coors Light"
-drink2_price: "2.00"
-hour_start: "03:00:00"
-hour_stop: "05:00:00"
-id: 1
-lat: 33.9394264
-lng: -117.2764969
-place_name: "Buffalo Wild Wings"
-type: "restaurant"
-zip_code: 92553 */
-        //let newHourStart = hourStart.slice(1, 5);
-        //let newHourEnd = hourEnd.slice(1, 5);
-        //console.log(newHourStart)
-        //grab menu class to append data inside card, card-body
-
         const menu = document.querySelector(".menu");
         const card_body = document.createElement('card-body');
         card_body.innerHTML = `
@@ -70,13 +47,6 @@ zip_code: 92553 */
             <p class="text-center">${appetizer1Name}_________$${appetizer1Price}</p>
             <p class="text-center">${appetizer2Name}_________$${appetizer2Price}</p>
             `
-            // menu.appendChild(card_body);
-            //hours
-            //drinks
-            //appetize
-            // if(card_body.length === 'undefined'){
-            //     card_body.length == 'More coming soon'
-            // }
         menu.appendChild(card_body);
     };
     //Add Location and pass in place, zip 
@@ -116,8 +86,6 @@ zip_code: 92553 */
         list.appendChild(row);
     }
     static showMenu(el) {
-        console.log(el);
-        console.log(lineItems);
 
         openNav();
         UI.displayMenu(parseInt(el.id.replace("r_", "")));
@@ -133,7 +101,7 @@ zip_code: 92553 */
         }
         //Clears the input fields after clicking submit
     static clearFields() {
-        //document.querySelector('#place').value = '';
+ 
         document.querySelector('#zip-code').value = '';
     };
     //Show Validation Message when inputs are invalid
@@ -152,8 +120,8 @@ zip_code: 92553 */
 };
 
 function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
+    document.getElementById("mySidenav").style.width = "20%";
+    document.getElementById("main").style.marginLeft = "20%";
 }
 
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
@@ -162,6 +130,7 @@ function closeNav() {
     document.getElementById("main").style.marginLeft = "0";
 };
 //---------------------------END OF UI CLASSS----------------------------------
+
 //--------------------------------
 //      Show Map:             
 //          initMap
@@ -177,11 +146,90 @@ function initMap() {
     map = {
         zoom: 8,
         center: myLocation,
-        mapTypeId: 'roadmap'
+        mapTypeId: 'roadmap',
+        styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ]
     }
     map = new google.maps.Map(document.getElementById("googleMap"), map);
 }
-//Add marker console.log(coords);
 
 
 function addMarker2(coords, name) {
@@ -202,9 +250,7 @@ function addMarker2(coords, name) {
     marker.setMap(map);
 }
 //---------------------------END SHOW MAP--------------------------------------
-//--------------------------------
-//      Store class: 
-//          handles storage
+
 //--------------------------------
 //--------------------------------
 //      Events: 
@@ -238,30 +284,10 @@ document.querySelector('#search-form').addEventListener('submit', e => {
 //EVENT: Select row location to menu
 //Target search-list 
 document.querySelector('#search-list').addEventListener('click', e => {
-    console.log("11");
-
     e.preventDefault();
-    //Set key, value target to variables
-    // let
-    //     nOP = $(e.target).data("nameOfPlaces"),
-    //     dS = $(e.target).data("dayStarts"),
-    //     dE = $(e.target).data("dayEnds"),
-    //     hS = $(e.target).data("hourStarts"),
-    //     hE = $(e.target).data("hourEnds"),
-    //     d1N = $(e.target).data("drink1Names"),
-    //     d1P = $(e.target).data("drink1Prices"),
-    //     d2N = $(e.target).data("drink2Names"),
-    //     d2P = $(e.target).data("drink2Prices"),
-    //     a1N = $(e.target).data("appetizer1Names"),
-    //     a1P = $(e.target).data("appetizer1Prices"),
-    //     a2N = $(e.target).data("appetizer2Names"),
-    //     a2P = $(e.target).data("appetizer2Prices");
 
     //On click, delete whole row
     UI.deleteLocation(e.target);
-
-    //Call function and pass in all the values from data.(key, value)
-    // UI.displayMenu(nOP, dS, dE, hS, hE, d1N, d1P, d2N, d2P, a1N, a1P, a2N, a2P);
 
 });
 //---------------------------END EVENTS----------------------------------------

@@ -32,18 +32,21 @@ class UI {
             appetizer2Name = k.appetizer2_name,
             appetizer2Price = k.appetizer1_price;
 
+        let hourEnding = hourEnd.slice(1,5);
+        let hourStarting = hourStart.slice(1,5);
+
         const menu = document.querySelector(".menu");
         const card_body = document.createElement('card-body');
         card_body.innerHTML = `
-            <p class="text-center">${namePlace}</p>
-            <p class="text-center">Weekly</p>
+            <p class="text-center" id="menu-place">${namePlace}</p>
+            <p class="text-center" id="menu-deal">WEEKLY</p>
             <p class="text-center">${dayStart} - ${dayEnd}</p>
-            <p class="text-center">Hours</p>
-            <p class="text-center">${hourStart}pm - ${hourEnd}pm</p>
-            <p class="text-center"> DRINK SPECIALS </p>
+            <p class="text-center" id="menu-deal">HOURS</p>
+            <p class="text-center">${hourStarting}pm - ${hourEnding}pm</p>
+            <p class="text-center" id="menu-deal"> DRINK SPECIALS </p>
             <p class="text-center">${drink1Name}_________$${drink1Price}</p>
             <p class="text-center">${drink2Name}_________$${drink2Price}</p>
-            <p class="text-center">APPETIZER SPECIALS</p>
+            <p class="text-center" id="menu-deal">APPETIZER SPECIALS</p>
             <p class="text-center">${appetizer1Name}_________$${appetizer1Price}</p>
             <p class="text-center">${appetizer2Name}_________$${appetizer2Price}</p>
             `
@@ -120,8 +123,8 @@ class UI {
 };
 
 function openNav() {
-    document.getElementById("mySidenav").style.width = "20%";
-    document.getElementById("main").style.marginLeft = "20%";
+    document.getElementById("mySidenav").style.width = "25%";
+    document.getElementById("main").style.marginLeft = "25%";
 }
 
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
@@ -144,7 +147,7 @@ function initMap() {
     var myLocation = new google.maps.LatLng(33.9746973, -117.33756599351244);
     //map options
     map = {
-        zoom: 8,
+        zoom: 11,
         center: myLocation,
         mapTypeId: 'roadmap',
         styles: [
@@ -236,7 +239,7 @@ function addMarker2(coords, name) {
 
     //map = new google.maps.Map(document.getElementById("googleMap"), map);
     var mapOptions = {
-            zoom: 4,
+            zoom: 11,
             center: coords
         }
         //map = new ngoogle.maps.Map(document.getElementById("map"), mapOptions);

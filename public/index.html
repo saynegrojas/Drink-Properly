@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="css/style.css">
     <!--Bootswatch-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/superhero/bootstrap.min.css">
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Satisfy&display=swap" rel="stylesheet">
     <title>Drink Properly</title>
 </head>
 
@@ -21,24 +23,25 @@
                 <!--Heading-->
                 <div class="container mt-4">
                     <h1 class="display-4">
-                        <span class="text-primary">Drink</span>
-                        <i class="fas fa-beer">roperly</i>
+                        <span id="logo">Drink</span>
+                        <i class="fas fa-beer fa-md" id="logo2">roperly</i>
                     </h1>
+                    <hr>
+                    <hr>
         
                     <!--Validation div Goes here-->
                     <div class="container2">
                         <!--Search Input-->
                         <form id="search-form">
-                            <div class="form-group">
-                                <label for="zip-code">Zip Code</label>
-                                <input type="number" id="zip-code" class="form-control" oninput="this.value=this.value.slice(0,this.maxLength)" maxlength="5" placeholder="Enter Zip Code" value="92553">
+                            <div class="form-group mb-3">
+                                <input type="number" style="font-size: 1.2rem;" id="zip-code" class="form-control" oninput="this.value=this.value.slice(0,this.maxLength)" maxlength="5" placeholder="Enter Zip Code" value="92553">
                             </div>
                             <!--submit button-->
-                            <input type="submit" id="submit-button" value="Find happy hour" class="btn btn-primary btn-block mb-5">
+                            <input type="submit" style="font-size: 1.2rem;"id="submit-button" value="Find happy hour" class="btn btn-primary btn-block mb-5">
                         </form>
         
                         <!--Google Maps Layout-->
-                        <div id="googleMap" style="width:100%;height:300px;"></div>
+                        <div id="googleMap" style="width:100%;height:350px;"></div>
         
                         <!--Table of nearby restaurants-->
                         <table class="table table-striped">

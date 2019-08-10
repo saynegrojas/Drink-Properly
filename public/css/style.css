@@ -4,36 +4,9 @@ body
     width: 100%;
     background-image: url(../img/GregsHouse.jpg);
     background-size: cover;
-<<<<<<< HEAD
-    
-}
-p {
-    font-family: 'Times New Roman', Times, serif;
-}
-h4 {
-    font-family: 'Times New Roman', Times, serif;
-}
-#first-logo {
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
-}
-label {
-    
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 1.5rem;
-}
-input {
-    border-style: solid, black, 2px;
-    opacity: 0.5;   
-}
-input:hover {
-    opacity: 1;
-}
-=======
     background-position: center center;
     }
 
->>>>>>> 102fc44a2e2bb71799a08a8f7fde893352043b29
 .sidenav {
     height: 100%;
     /* 100% Full-height */
@@ -61,7 +34,7 @@ input:hover {
 .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 25px;
     color: #818181;
     display: block;
     transition: 0.3s;
@@ -113,18 +86,6 @@ input:hover {
         font-size: 18px;
     }
 }
-<<<<<<< HEAD
-tbody {
-    background-color: rgba(255, 81, 0, 0.226);
-    background-image: linear-gradient( rgb(58, 55, 52), rgba(218, 145, 112, 0.295));
-}
-tr {
-    opacity: 0.5;
-}
-tr:hover {
-    opacity: 1;
-}
-=======
 input {
     background-color: rgb(0, 0, 0);
     
@@ -144,11 +105,3 @@ input:hover {
     background-color: rgb(255, 255, 255);
     color: #000;
 }
-
-
-
-
-
-
- 
->>>>>>> 102fc44a2e2bb71799a08a8f7fde893352043b29

@@ -10,16 +10,8 @@
         "start": "node server.js",
         "dev": "nodemon server.js"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/saynegrojas/Drink-Properly.git"
-    },
     "author": "",
     "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/saynegrojas/Drink-Properly/issues"
-    },
-    "homepage": "https://github.com/saynegrojas/Drink-Properly#readme",
     "dependencies": {
         "dotenv": "^8.0.0",
         "express": "^4.17.1",

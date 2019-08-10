@@ -4,6 +4,7 @@
 
 require('dotenv').config();
 const express = require('express');
+const helmet = require('helmet');
 //================================================================
 //Sets up express app
 //================================================================
@@ -20,6 +21,7 @@ const db = require('./models');
 //middleware to handle data parsing
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(helmet());
 
 //static directory
 app.use(express.static('public'));

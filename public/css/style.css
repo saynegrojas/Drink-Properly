@@ -1,11 +1,9 @@
-body
-    
-    {
+body {
     width: 100%;
     background-image: url(../img/GregsHouse.jpg);
     background-size: cover;
     background-position: center center;
-    }
+}
 
 .sidenav {
     height: 100%;
@@ -27,8 +25,9 @@ body
     transition: 0.5s;
     /* 0.5 second transition effect to slide in the sidenav */
     border-right: solid orange 1px;
-    
 }
+
+
 /* The navigation menu links */
 
 .sidenav a {
@@ -39,11 +38,15 @@ body
     display: block;
     transition: 0.3s;
 }
+
+
 /* When you mouse over the navigation links, change their color */
 
 .sidenav a:hover {
     color: #f1f1f1;
 }
+
+
 /* Position and style the close button (top right corner) */
 
 .sidenav .closebtn {
@@ -52,15 +55,13 @@ body
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
-   
 }
 
 .close-btn {
-    position:absolute;
+    position: absolute;
     bottom: 40%;
-    right:50%;
+    right: 50%;
     margin-top: 25px;
-    
 }
 
 #submit-button {
@@ -70,12 +71,16 @@ body
 .invisible {
     visibility: hidden;
 }
+
+
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 
 #main {
     transition: margin-left .5s;
     padding: 20px;
 }
+
+
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 
 @media screen and (max-height: 450px) {
@@ -86,22 +91,22 @@ body
         font-size: 18px;
     }
 }
+
 input {
     background-color: rgb(0, 0, 0);
-    
 }
-input:hover {
-    background-color:lightgray;
 
-    }
-.container{
+input:hover {
+    background-color: lightgray;
+}
+
+.container {
     background-color: rgba(0, 0, 0, 0.65);
     border: solid orange;
     padding: 75px;
-    
- 
 }
-.table{
+
+.table {
     background-color: rgb(255, 255, 255);
     color: #000;
 }

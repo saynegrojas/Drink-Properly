@@ -32,8 +32,8 @@ class UI {
             appetizer2Name = k.appetizer2_name,
             appetizer2Price = k.appetizer1_price;
 
-        let hourEnding = hourEnd.slice(1,5);
-        let hourStarting = hourStart.slice(1,5);
+        let hourEnding = hourEnd.slice(0,5);
+        let hourStarting = hourStart.slice(0,5);
 
         const menu = document.querySelector(".menu");
         const card_body = document.createElement('card-body');
@@ -82,9 +82,9 @@ class UI {
         $(row).data("appetizer2Prices", appetizer2Prices);
         //add columns to table
         row.innerHTML = `
-        <td onclick="UI.showMenu(this)" id="r_` + j.toString() + `">${nameOfPlace}</td>
-        <td>${postalCodes}</td>
-        <td onclick="deleteLocation(this)" class="btn btn-outline-danger btn-lg delete">Don't like this place</td> 
+        <td onclick="UI.showMenu(this)" class="table-row" id="r_` + j.toString() + `">${nameOfPlace}</td>
+        <td class="table-row">${postalCodes}</td>
+        <td onclick="deleteLocation(this)" class="btn btn-outline-primary btn-md delete">Don't like this place</td> 
         `;
         list.appendChild(row);
     }
@@ -108,23 +108,23 @@ class UI {
         document.querySelector('#zip-code').value = '';
     };
     //Show Validation Message when inputs are invalid
-    static validateMessage(message, className) {
-        const div = document.createElement('div');
-        div.className = `alert alert-${className}`;
-        div.appendChild(document.createTextNode(message));
-        const container = document.querySelector('.container');
-        const form = document.querySelector('#search-form');
-        container.insertBefore(div, form);
-        //Set timeout so it does not stay on the screen
-        //set for 3s
-        setTimeout(() => document.querySelector('.alert').remove(),
-            3000)
-    };
+    // static validateMessage(message, className) {
+    //     const div = document.createElement('div');
+    //     div.className = `alert alert-${className}`;
+    //     div.appendChild(document.createTextNode(message));
+    //     const container = document.querySelector('.container');
+    //     const form = document.querySelector('#search-form');
+    //     container.insertBefore(div, form);
+    //     //Set timeout so it does not stay on the screen
+    //     //set for 3s
+    //     setTimeout(() => document.querySelector('.alert').remove(),
+    //         3000)
+    // };
 };
 
 function openNav() {
-    document.getElementById("mySidenav").style.width = "25%";
-    document.getElementById("main").style.marginLeft = "25%";
+    document.getElementById("mySidenav").style.width = "20%";
+    document.getElementById("main").style.marginLeft = "20%";
 }
 
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
@@ -261,6 +261,7 @@ function addMarker2(coords, name) {
 //          Add location
 //          Remove location
 //--------------------------------
+
 //EVENT: Initiate Map on Load 
 document.addEventListener("DOMContentLoaded", initMap);
 //EVENT: Add location on submit
@@ -276,7 +277,7 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     //Validate input fields
     //place: not necessary
     if (zip === '') {
-        UI.validateMessage('Please enter a zip code', 'danger');
+        //UI.validateMessage('Please enter a zip code', 'danger');
     } else {
         //Clears input fields when submit is clicked
         UI.clearFields();
@@ -323,10 +324,10 @@ function getLatLng(zip) {
                     //grab the whole row from the DOM
                     const row = document.querySelector('tr');
                     lineItems = data;
-                    for (var j = 0; j < data.length - 1; j++) {
+                    for (var j = 0; j < data.length; j++) {
                         //Go through data to match zip codes with input zip codes
                         if (data[j]["zip_code"] != postal_code) {
-                            UI.validateMessage("Coming Soon..", "info");
+                            //UI.validateMessage("Coming Soon..", "info");
                             break;
                         } else {
                             let results = data[j];

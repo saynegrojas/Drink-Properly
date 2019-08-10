@@ -64,7 +64,8 @@ p {
    
 }
 .close-btn {
-
+    padding: 10px;
+    font-family: 'Old Standard TT', serif;
     font-size: 1rem;
     position: absolute;
     color: white;
@@ -75,11 +76,17 @@ p {
     margin-top: 25px;
 }
 .close-btn:hover {
-    opacity: 1;
+    color: black;
     background-color: orange;
 }
 #submit-button {
+    font-weight: 15;
+    font-family: 'Old Standard TT', serif;
     background-color: orange;
+}
+#submit-button:hover {
+    color: black;
+    background-color:orange;
 }
 
 .invisible {
@@ -101,18 +108,22 @@ p {
         font-size: 18px;
     }
 }
-input {
-    background-color: rgb(0, 0, 0);
-    
+#zip-code {
+    border: 1px solid orange;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.1);
 }
-input:hover {
-    background-color:lightgray;
-
-    }
+input {
+    color: white;
+    font-family: 'Old Standard TT', serif;
+}
+/* input:hover {
+    background-color: rgba(255, 255, 255, 0.65);
+    } */
 .container{
     background-color: rgba(0, 0, 0, 0.65);
-    border: solid orange;
-    padding: 75px;
+    border: .8px solid orange;
+    padding: 30px;
 }
 .table{
     background-color: rgba(0, 0, 0, 0.65);
@@ -125,6 +136,44 @@ input:hover {
     color: orange;
 }
 #logo2 {
-    font-size: 50px;
+    font-size: 60px;
     font-weight: bold;
 }
+h5 {
+    font-size: 40px;
+    font-family: 'Old Standard TT', serif;
+}
+th {
+    font-family: 'Old Standard TT', serif;
+    font-size: 22px;
+    padding: 5px;
+}
+.table-row {
+    font-size: 17px;
+    font-family: 'Old Standard TT', serif;
+}
+.delete {
+    font-family: 'Old Standard TT', serif;
+}
+@media only screen and (min-width: 992px) {
+	.table {
+		background-color: rgba(0, 0, 0, 0.65);
+	}
+  tbody {
+    display: block;
+    height: 170px;
+    overflow-x: auto;
+  }
+  thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+}
+/* Changes wrapper for feature discovery on small screens */
+@media only screen and (max-width: 768px) {
+    .tap-target, .tap-target-wrapper {
+      height: 95%;
+      border-radius: 25%;
+    }
+  }

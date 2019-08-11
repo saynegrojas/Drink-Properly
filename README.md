@@ -1,10 +1,22 @@
-# Drink-Properly
+# Drink Properly
 
-Drink-Properly application locates places for happy hours.
+Our purpose for our application is to provide anyone who wants to find the best deals while still having a good time.
 
-Users type a location where they would like to know the hours, prices for drinks, and prices for food. 
+Drink Properly application locates restaurants and present their happy hour menus.
 
-The application's input field will allow users to type the name of a place and the zip code.
+How does Drink Properly application work? Users type a zip code in our input field, and we locate all the restaurants with the matching zip code. 
+
+After, we provide a table of all the restaurants listed.
+
+Along with the table list of restaurants, we also include markers of all the restaurants on Google Maps displayed in our main page.
+
+Users then are to choose which restaurant they would like to see the menu for happy hours. 
+
+Our application then displays the restaurant's happy hour's days, hours, drink prices, and appetizer prices. 
+
+
+Our application's database only has Moreno Valley: 92553.
+
 
 HEROKU:
 

@@ -4,20 +4,60 @@ Our purpose for our application is to provide anyone who wants to find the best 
 
 Drink Properly application locates restaurants and present their happy hour menus.
 
-How does Drink Properly application work? Users type a zip code in our input field, and we locate all the restaurants with the matching zip code. 
+Our application's database only has Moreno Valley's zip code as of the momement: 92553.
 
-After, we provide a table of all the restaurants listed.
+![](public/img/drinkproperly.jpg)
 
-Along with the table list of restaurants, we also include markers of all the restaurants on Google Maps displayed in our main page.
+## Getting Started
 
-Users then are to choose which restaurant they would like to see the menu for happy hours. 
+To get started, make sure to clone the repo.
 
-Our application then displays the restaurant's happy hour's days, hours, drink prices, and appetizer prices. 
+## Prerequisites
+
+- Clone repository
+
+The minimum requirements to run this include:
+
+- MySQL
+- Npm
 
 
-Our application's database only has Moreno Valley: 92553.
+## 🌐 **Installing**
 
+A step by step series of examples that tell you how to get a development env running.
 
-HEROKU:
+1. Update your `.env` file with the required information. Make sure the mysql information is correct. 
 
-https://guarded-fjord-58329.herokuapp.com/
+.env example input
+```
+DB_PASSWORD=Ds~4lq~}.?*f~Ql$42J%aR7%SoKxaN
+SECRET=SklZvh3a0PwQev901A1zT23vlG
+```
+
+2. Install required packages
+
+```
+npm install
+
+```
+## Deployment
+
+Deployed on Heroku: https://guarded-fjord-58329.herokuapp.com/
+
+## 🔨 **Built With**
+
+* HTML
+* CSS
+* JavaScript
+* MySQL
+* Google Maps
+
+## Contributing
+
+* **👤 Greg Rojas**
+* **👤 Christian Arteaga **
+* **👤 Victoria Jackson **
+
+## 🗒 **License**
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.

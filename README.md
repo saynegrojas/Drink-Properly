@@ -6,7 +6,7 @@ Drink Properly application locates restaurants and present their happy hour menu
 
 Our application's database only has Moreno Valley's zip code as of the momement: 92553.
 
-![](public/img/drinkproperly.jpg)
+<img src="public/img/drinkproperly.jpg" width="100">
 
 ## Getting Started
 

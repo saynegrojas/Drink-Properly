@@ -15,7 +15,7 @@ Our application's database only has Moreno Valley's zip code as of the momement:
 
 ## 👨‍💻 **Getting Started**
 
-To get started, make sure to clone the repo.
+To get started, make sure to clone the repo and fill the `.env` file with the appropriate information.
 
 ## ⟲ **Prerequisites**
 

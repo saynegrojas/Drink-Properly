@@ -13,11 +13,11 @@ Our application's database only has Moreno Valley's zip code as of the momement:
 </p>
 
 
-## Getting Started
+## 👨‍💻 **Getting Started**
 
 To get started, make sure to clone the repo.
 
-## Prerequisites
+## ⟲ **Prerequisites**
 
 - Clone repository
 
@@ -45,7 +45,7 @@ SECRET=SklZvh3a0PwQev901A1zT23vlG
 npm install
 
 ```
-## Deployment
+## 📓 **Development**
 
 Deployed on Heroku: https://guarded-fjord-58329.herokuapp.com/
 
@@ -57,7 +57,7 @@ Deployed on Heroku: https://guarded-fjord-58329.herokuapp.com/
 * MySQL
 * Google Maps
 
-## Contributing
+## 🤝 **Contributing**
 
 * **👤 Greg Rojas**
 * **👤 Christian Arteaga**

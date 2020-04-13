@@ -59,9 +59,9 @@ Deployed on Heroku: https://guarded-fjord-58329.herokuapp.com/
 
 ## Contributing
 
-* **👤 Greg Rojas **
-* **👤 Christian Arteaga **
-* **👤 Victoria Jackson **
+* **👤Greg Rojas **
+* **👤Christian Arteaga **
+* **👤Victoria Jackson **
 
 ## 🗒 **License**
 

@@ -19,10 +19,9 @@ To get started, make sure to clone the repo and fill the `.env` file with the ap
 
 ## ⟲ **Prerequisites**
 
-- Clone repository
-
 The minimum requirements to run this include:
 
+- Clone repository
 - MySQL
 - Npm
 

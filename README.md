@@ -1,4 +1,4 @@
-# Drink Properly
+# :beer: Drink Properly
 
 Our purpose for our application is to provide anyone who wants to find the best deals while still having a good time.
 

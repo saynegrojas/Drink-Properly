@@ -32,8 +32,8 @@ class UI {
             appetizer2Name = k.appetizer2_name,
             appetizer2Price = k.appetizer1_price;
 
-        let hourEnding = hourEnd.slice(0,5);
-        let hourStarting = hourStart.slice(0,5);
+        let hourEnding = hourEnd.slice(0, 5);
+        let hourStarting = hourStart.slice(0, 5);
 
         const menu = document.querySelector(".menu");
         const card_body = document.createElement('card-body');
@@ -62,10 +62,10 @@ class UI {
         //create a new row that holds all tr
         const row = document.createElement('tr');
         //row.id = "r_" + j.toString();
-        row.onclick = function(e) {
+        row.onclick = function (e) {
 
-            }
-            //.addEventListener('click', function(){ alert('blah');}, false);
+        }
+        //.addEventListener('click', function(){ alert('blah');}, false);
 
         $(row).data("nameOfPlaces", nameOfPlaces);
         $(row).data("dayStarts", dayStarts);
@@ -104,7 +104,7 @@ class UI {
     }
     //Clears the input fields after clicking submit
     static clearFields() {
- 
+
         document.querySelector('#zip-code').value = '';
     };
     //Show Validation Message when inputs are invalid
@@ -151,85 +151,85 @@ function initMap() {
         center: myLocation,
         mapTypeId: 'roadmap',
         styles: [
-            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
+            { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
+            { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
             {
-              featureType: 'administrative.locality',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
+                featureType: 'administrative.locality',
+                elementType: 'labels.text.fill',
+                stylers: [{ color: '#d59563' }]
             },
             {
-              featureType: 'poi',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
+                featureType: 'poi',
+                elementType: 'labels.text.fill',
+                stylers: [{ color: '#d59563' }]
             },
             {
-              featureType: 'poi.park',
-              elementType: 'geometry',
-              stylers: [{color: '#263c3f'}]
+                featureType: 'poi.park',
+                elementType: 'geometry',
+                stylers: [{ color: '#263c3f' }]
             },
             {
-              featureType: 'poi.park',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#6b9a76'}]
+                featureType: 'poi.park',
+                elementType: 'labels.text.fill',
+                stylers: [{ color: '#6b9a76' }]
             },
             {
-              featureType: 'road',
-              elementType: 'geometry',
-              stylers: [{color: '#38414e'}]
+                featureType: 'road',
+                elementType: 'geometry',
+                stylers: [{ color: '#38414e' }]
             },
             {
-              featureType: 'road',
-              elementType: 'geometry.stroke',
-              stylers: [{color: '#212a37'}]
+                featureType: 'road',
+                elementType: 'geometry.stroke',
+                stylers: [{ color: '#212a37' }]
             },
             {
-              featureType: 'road',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#9ca5b3'}]
+                featureType: 'road',
+                elementType: 'labels.text.fill',
+                stylers: [{ color: '#9ca5b3' }]
             },
             {
-              featureType: 'road.highway',
-              elementType: 'geometry',
-              stylers: [{color: '#746855'}]
+                featureType: 'road.highway',
+                elementType: 'geometry',
+                stylers: [{ color: '#746855' }]
             },
             {
-              featureType: 'road.highway',
-              elementType: 'geometry.stroke',
-              stylers: [{color: '#1f2835'}]
+                featureType: 'road.highway',
+                elementType: 'geometry.stroke',
+                stylers: [{ color: '#1f2835' }]
             },
             {
-              featureType: 'road.highway',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#f3d19c'}]
+                featureType: 'road.highway',
+                elementType: 'labels.text.fill',
+                stylers: [{ color: '#f3d19c' }]
             },
             {
-              featureType: 'transit',
-              elementType: 'geometry',
-              stylers: [{color: '#2f3948'}]
+                featureType: 'transit',
+                elementType: 'geometry',
+                stylers: [{ color: '#2f3948' }]
             },
             {
-              featureType: 'transit.station',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
+                featureType: 'transit.station',
+                elementType: 'labels.text.fill',
+                stylers: [{ color: '#d59563' }]
             },
             {
-              featureType: 'water',
-              elementType: 'geometry',
-              stylers: [{color: '#17263c'}]
+                featureType: 'water',
+                elementType: 'geometry',
+                stylers: [{ color: '#17263c' }]
             },
             {
-              featureType: 'water',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#515c6d'}]
+                featureType: 'water',
+                elementType: 'labels.text.fill',
+                stylers: [{ color: '#515c6d' }]
             },
             {
-              featureType: 'water',
-              elementType: 'labels.text.stroke',
-              stylers: [{color: '#17263c'}]
+                featureType: 'water',
+                elementType: 'labels.text.stroke',
+                stylers: [{ color: '#17263c' }]
             }
-          ]
+        ]
     }
     map = new google.maps.Map(document.getElementById("googleMap"), map);
 }
@@ -239,10 +239,10 @@ function addMarker2(coords, name) {
 
     //map = new google.maps.Map(document.getElementById("googleMap"), map);
     var mapOptions = {
-            zoom: 11,
-            center: coords
-        }
-        //map = new ngoogle.maps.Map(document.getElementById("map"), mapOptions);
+        zoom: 11,
+        center: coords
+    }
+    //map = new ngoogle.maps.Map(document.getElementById("map"), mapOptions);
 
     var marker = new google.maps.Marker({
         position: coords,
@@ -309,7 +309,7 @@ function getLatLng(zip) {
     $.ajax({
         url: `https://maps.googleapis.com/maps/api/geocode/json?address=${postal_code}&key=AIzaSyBP54kpmrFby0vkOHXhz8C2FHpH35IKJ54`,
         type: "GET",
-        success: function(data) {
+        success: function (data) {
             //console.log(data);
             //Grab lat and lng to create markers for map
             //Set chosen data to variables 
@@ -319,7 +319,7 @@ function getLatLng(zip) {
             let lng = (data["results"][0]["geometry"]["location"]["lng"]);
             //Getting our api 
             if (postal_code == postalCode) {
-                $.get('/api/all', function(data) {
+                $.get('/api/all', function (data) {
                     console.log(data);
                     //grab the whole row from the DOM
                     const row = document.querySelector('tr');
@@ -333,7 +333,7 @@ function getLatLng(zip) {
                             let results = data[j];
                             //Grab variables and store into variables
                             let
-                            //location
+                                //location
                                 typeOfPlace = results["type"],
                                 nameOfPlaces = results["place_name"],
                                 zipCodes = results["zip_code"],

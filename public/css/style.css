@@ -98,16 +98,7 @@ p {
     transition: margin-left .5s;
     padding: 20px;
 }
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 
-@media screen and (max-height: 450px) {
-    .sidenav {
-        padding-top: 15px;
-    }
-    .sidenav a {
-        font-size: 18px;
-    }
-}
 #zip-code {
     border: 1px solid orange;
     color: white;
@@ -170,6 +161,18 @@ th {
     table-layout: fixed;
   }
 }
+
+/* Media Queries */
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
 /* Changes wrapper for feature discovery on small screens */
 @media only screen and (max-width: 768px) {
     .tap-target, .tap-target-wrapper {
@@ -177,3 +180,23 @@ th {
       border-radius: 25%;
     }
   }
+@media only screen and (min-width: 1024px) {
+    .container {
+        max-width: 600px;
+    }
+}
+
+  /*/* Extra small devices (phones, 600px and down) 
+@media only screen and (max-width: 600px) {...} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) 
+@media only screen and (min-width: 600px) {...} 
+
+/* Medium devices (landscape tablets, 768px and up) 
+@media only screen and (min-width: 768px) {...} 
+
+/* Large devices (laptops/desktops, 992px and up) 
+@media only screen and (min-width: 992px) {...} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) 
+@media only screen and (min-width: 1200px) {...}*/
